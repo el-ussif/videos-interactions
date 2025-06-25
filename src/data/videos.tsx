@@ -21,24 +21,6 @@ export type InteractionComponentProps = {
 
 export const videos = [
     {
-        id: 10,
-        src: "/videos/ocean/Frame10.mp4",
-        interactions: [
-            {
-                timecode: 1,
-                duration: false,
-                blocking: true,
-                component: (props: InteractionComponentProps) => <KnowledgeCheckFishesMatching {...props} />,
-            },
-            {
-                timecode: 15,
-                duration: null,
-                blocking: true,
-                component: (props: InteractionComponentProps) => <KnowledgeCheckBarrelEye {...props} />,
-            },
-        ],
-    },
-    {
         id: 1,
         src: "/videos/ocean/Frame01.mp4",
         interactions: [
@@ -169,10 +151,10 @@ export const videos = [
         src: "/videos/ocean/Frame10.mp4",
         interactions: [
             {
-                timecode: 3,
+                timecode: 5,
                 duration: false,
                 blocking: true,
-                component: (props: InteractionComponentProps) => <OceanStarter {...props} />,
+                component: (props: InteractionComponentProps) => <KnowledgeCheckFishesMatching {...props} />,
             },
             {
                 timecode: 15,
