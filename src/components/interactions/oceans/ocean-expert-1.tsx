@@ -1,6 +1,8 @@
 import {Button} from "@/components/ui/button";
 
-export default function OceanExpert1({ onComplete }: { onComplete?: () => void }) {
+export default function OceanExpert1({ onComplete,   disabled = false,
+                                     }: { onComplete?: () => void,   disabled?: boolean;
+}) {
     return (
         <div className="items-center w-full flex  text-black">
             <div className="max-w-[500px] px-[56px] ml-[50px] rounded-[80px] overflow-hidden
@@ -38,11 +40,13 @@ export default function OceanExpert1({ onComplete }: { onComplete?: () => void }
                     </div>
 
 
-                    {/* CTA Button */}
                     {onComplete && (
                         <Button
                             onClick={onComplete}
-                            className="w-full mt-10"
+                            disabled={disabled}
+                            className={`w-full mt-10 ${
+                                disabled ? "bg-white text-black cursor-not-allowed opacity-60" : ""
+                            }`}
                         >
                             Continue
                         </Button>

@@ -11,9 +11,9 @@ const fishQuizData = {
         "Seaweed loss reduces food supply",
         "Temperature changes reduce the amount of mating"
     ],
-    correctAnswers: [0],
+    correctAnswers: [0,2],
     points: 10,
-    type: "single" as const,
+    type: "multiple" as const,
 }
 
 export default function KnowledgeCheckQuizJapaneseSpiderCrab({ onComplete }: { onComplete?: () => void }) {

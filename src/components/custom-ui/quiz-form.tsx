@@ -134,7 +134,7 @@ export default function QuizForm({
 
                     {/* Selection hint for multiple choice */}
                     {question.type === "multiple" && !hasSubmitted && (
-                        <p className="text-sm text-white/70 mt-4 text-center">
+                        <p className="text-sm hidden text-white/70 mt-4 text-center">
                             Select all that apply ({selectedAnswers.length} selected)
                         </p>
                     )}

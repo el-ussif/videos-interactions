@@ -25,11 +25,24 @@ export const videos = [
         src: "/videos/ocean/Frame01.mp4",
         interactions: [
             {
-                timecode: 2,
+                timecode: 1,
                 duration: 5,
                 blocking: false,
                 component: (props: InteractionComponentProps) => <OceanObjective {...props} />,
             },/*
+            {
+        id: 3,
+        src: "/videos/ocean/Frame03.mp4",
+        interactions: [
+            {
+                timecode: 1,
+                duration: 7,
+                previewDuration: 5,
+                blocking: true,
+                component: (props: InteractionComponentProps) => <OceanExpert1 {...props} />,
+            },
+        ],
+    },
             {
                 timecode: 10,
                 duration: 5,
@@ -43,9 +56,11 @@ export const videos = [
         src: "/videos/ocean/Frame02.mp4",
         interactions: [
             {
-                timecode: 2,
-                duration: null,
+                timecode: 0.1,
+                duration: Infinity,
                 blocking: true,
+                loop: true,
+                canGoNext: true,
                 component: (props: InteractionComponentProps) => <OceanStarter {...props} />,
             },
         ],
