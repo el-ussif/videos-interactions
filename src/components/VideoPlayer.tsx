@@ -240,7 +240,7 @@ export default function VideoPlayer() {
 
                 const videoSrc = videos[i].src;
 
-                if ('requestIdleCallback' in window) {
+                if ('requestIdleCallback' in window) {//eslint-disable-next-line @typescript-eslint/no-explicit-any
                     (window as any).requestIdleCallback(() => {
                         preloadVideo(videoSrc);
                     });
