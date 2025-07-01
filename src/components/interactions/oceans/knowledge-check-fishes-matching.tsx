@@ -2,6 +2,7 @@
 
 import MatchingBoxes from "@/components/custom-ui/matching-boxes/matching-boxes";
 import React from "react";
+import useTokenStore from "@/store/token-store";
 
 
 export default function KnowledgeCheckFishesMatching({ onComplete }: { onComplete?: () => void }) {
@@ -10,12 +11,15 @@ export default function KnowledgeCheckFishesMatching({ onComplete }: { onComplet
         { id: '2', visual: '/images/oceans/japanese-spider-crab-2.png', correctLabel: 'Japanese Spider Crab' },
         { id: '3', visual: '/images/oceans/barrel-eye-fish-2.png', correctLabel: 'Barreleye Fish' },
     ];
+    const {addToken} = useTokenStore()
+    const rate = 10
 
     const handleMatchingBoxSubmit = (result: {
         correctCount: number,
         total: number,
     }) => {
         console.log(`Points earned: ${result.correctCount}/${result.total}`)
+        addToken(result.correctCount * rate)
         if (onComplete) {
             onComplete()
         }

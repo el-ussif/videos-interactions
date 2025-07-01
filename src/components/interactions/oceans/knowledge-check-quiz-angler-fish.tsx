@@ -1,6 +1,7 @@
 "use client"
 
 import QuizForm from "@/components/custom-ui/quiz-form";
+import useTokenStore from "@/store/token-store";
 
 const fishQuizData = {
     id: "football-fish",
@@ -12,10 +13,13 @@ const fishQuizData = {
 }
 
 export default function KnowledgeCheckQuizAnglerFish({ onComplete }: { onComplete?: () => void }) {
+    const {addToken} = useTokenStore()
+
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleQuizSubmit = (result: any) => {
         console.log(`Points earned: ${result.pointsEarned}/${result.totalPoints}`)
         console.log(`Answer ${result.isCorrect ? "correct" : "incorrect"}`)
+        addToken(result.pointsEarned)
         if (onComplete) {
             onComplete()
         }

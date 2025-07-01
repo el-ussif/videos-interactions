@@ -18,7 +18,7 @@ export default function PerformanceSummary() {
                             </div>
                         </div>
 
-                        <div className="grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
+                        <div className="grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
                             <div className="bg-green-1 flex flex flex-wrap gap-2 p-4 rounded-2xl">
                                 <div className="flex items-center space-x-3 w-full">
                                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
@@ -114,7 +114,7 @@ export default function PerformanceSummary() {
 
                         </div>
 
-                        <div className="bg-dark-1 mt-10 items-center rounded-3xl w-full flex justify-between">
+                        <div className="bg-dark-1 mt-8 items-center rounded-3xl w-full flex justify-between">
                             <div className="px-10 text-left font-semibold text-2xl">
                                 Download a hands-on <br/>
                                 activity for bonus tokens
@@ -125,7 +125,7 @@ export default function PerformanceSummary() {
                         </div>
 
                         <div className="">
-                            <Button className="w-[444px] py-7 mt-16 rounded-xl">
+                            <Button className="w-[444px] py-7 mt-8 rounded-xl">
                                 Exit
                             </Button>
                         </div>

@@ -25,30 +25,32 @@ export const videos = [
         src: "/videos/ocean/Frame01.mp4",
         interactions: [
             {
-                timecode: 1,
+                timecode: 0.1,
                 duration: 5,
                 blocking: false,
                 component: (props: InteractionComponentProps) => <OceanObjective {...props} />,
-            },/*
-            {
-        id: 3,
-        src: "/videos/ocean/Frame03.mp4",
-        interactions: [
-            {
-                timecode: 1,
-                duration: 7,
-                previewDuration: 5,
-                blocking: true,
-                component: (props: InteractionComponentProps) => <OceanExpert1 {...props} />,
             },
-        ],
-    },
+            /*
+            {
+                id: 3,
+                src: "/videos/ocean/Frame03.mp4",
+                interactions: [
+                    {
+                        timecode: 1,
+                        duration: 7,
+                        previewDuration: 5,
+                        blocking: true,
+                        component: (props: InteractionComponentProps) => <OceanExpert1 {...props} />,
+                    },
+                ],
+            },
             {
                 timecode: 10,
                 duration: 5,
                 blocking: false,
                 component: (props: InteractionComponentProps) => <OceanObjective {...props} />,
-            },*/
+            },
+            */
         ],
     },
     {
@@ -203,7 +205,19 @@ export const videos = [
             },
         ],
     },
-
+    {
+        id: 12,
+        src: "/videos/ocean/Frame08.mp4",
+        interactions: [
+            {
+                timecode: 0.1,
+                duration: 10,
+                blocking: true,
+                loop: true,
+                component: () => <PerformanceSummary/>,
+            },
+        ],
+    },
     /*
     {
         id: 8,

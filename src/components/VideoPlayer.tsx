@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { videos } from "@/data/videos";
 import { Pause, Play, Volume2, VolumeX, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import useTokenStore from "@/store/token-store";
 
 export default function VideoPlayer() {
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -17,6 +18,7 @@ export default function VideoPlayer() {
     const [hoverControls, setHoverControls] = useState(false);
     const audioRef = useRef<HTMLAudioElement>(null);
     const currentVideo = videos[videoIndex];
+    const {token} = useTokenStore()
 
     useEffect(() => {
         document.body.style.overflow = "hidden";
@@ -206,13 +208,56 @@ export default function VideoPlayer() {
 
     const togglePlay = () => {
         const video = videoRef.current;
+        const audio = audioRef.current;
         if (!video || currentInteraction?.blocking) return;
         if (video.paused) {
             video.play();
+            if (audio)
+                audio.play();
         } else {
             video.pause();
+            if (audio)
+                audio.pause();
         }
     }
+
+    useEffect(() => {
+        if (!hasUserInteracted) return;
+
+        let canceled = false;
+
+        const preloadVideo = (videoSrc: string) => {
+            const link = document.createElement("link");
+            link.rel = "preload";
+            link.as = "video";
+            link.href = videoSrc;
+            document.head.appendChild(link);
+        };
+
+        const preloadNextVideos = async () => {
+            for (let i = videoIndex + 1; i < videos.length; i++) {
+                if (canceled) return;
+
+                const videoSrc = videos[i].src;
+
+                if ('requestIdleCallback' in window) {
+                    (window as any).requestIdleCallback(() => {
+                        preloadVideo(videoSrc);
+                    });
+                } else {
+                    setTimeout(() => preloadVideo(videoSrc), 100 * i); // spacing by 100ms * i
+                }
+                // Optionally wait between each preload (soft pacing)
+                await new Promise((res) => setTimeout(res, 300)); // 300ms delay
+            }
+        };
+
+        preloadNextVideos();
+
+        return () => {
+            canceled = true;
+        };
+    }, [hasUserInteracted]);
 
     return (
         <div className="fixed inset-0 bg-black z-50">
@@ -278,7 +323,7 @@ export default function VideoPlayer() {
                                         </div>
 
                                         {/* Controls */}
-                                        <div className="w-full flex justify-between px-6 pt-2 pb-4 items-center">
+                                        <div className="w-full flex justify-between px-6 pb-4 items-center">
                                             <div className="flex space-x-8">
                                                 <button
                                                     onClick={togglePlay}
@@ -286,7 +331,7 @@ export default function VideoPlayer() {
                                                         currentInteraction?.blocking
                                                             ? "opacity-50 cursor-not-allowed"
                                                             : "hover:cursor-pointer"
-                                                    } bg-[#DBE2EA]/40 h-[64px] w-[64px] rounded-full items-center justify-center flex transition`}
+                                                    } bg-[#DBE2EA]/40 h-[60px] w-[60px] rounded-full items-center justify-center flex transition`}
                                                     disabled={currentInteraction?.blocking}
                                                 >
                                                     {videoRef.current?.paused ? <Play/> : <Pause/>}
@@ -299,7 +344,7 @@ export default function VideoPlayer() {
                                                     if (!video) return;
                                                     video.muted = !video.muted;
                                                 }}
-                                                className="text-white hover:cursor-pointer bg-[#DBE2EA]/40 h-[64px] w-[64px] rounded-full items-center justify-center flex transition"
+                                                className="text-white hover:cursor-pointer bg-[#DBE2EA]/40 h-[60px] w-[60px] rounded-full items-center justify-center flex transition"
                                             >
                                                 {videoRef.current?.muted ? <VolumeX/> : <Volume2/>}
                                             </button>
@@ -332,7 +377,9 @@ export default function VideoPlayer() {
                                 className="fixed min-w-[150px] z-100 top-6 right-4 text-white bg-[#DBE2EA]/40 flex rounded-full items-center justify-center"
                             >
                                 <img className="w-[54px]" src="/images/globe-kin-gem.png" alt=""/>
-                                <span className="w-full font-bold text-xl justify-center">500</span>
+                                <span className="w-full font-bold text-xl justify-center">
+                                    {token}
+                                </span>
                             </motion.button>
                         )}
                     </AnimatePresence>
@@ -342,7 +389,7 @@ export default function VideoPlayer() {
             <audio
                 ref={audioRef}
                 src="/audios/ocean-loop.mp3"
-                autoPlay
+                autoPlay={false}
                 loop
                 hidden
             />
