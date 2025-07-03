@@ -150,27 +150,6 @@ export default function MatchingBoxes({items, onSubmitted}: MatchingBoxesProps) 
                         Continue
                     </Button>
                 </div>
-
-                {showResult && (
-                    <div className="mt-6 text-lg  font-medium">
-                        ✅ {correctCount}/{items.length} correct
-                        <div className="text-sm mt-4">
-                            {items.map((item) => (
-                                <div
-                                    key={item.id}
-                                    className={clsx(
-                                        'my-1 p-2 rounded',
-                                        assignments[item.id]?.label === item.correctLabel
-                                            ? 'bg-green-100 text-green-800'
-                                            : 'bg-red-100 text-red-800'
-                                    )}
-                                >
-                                    {item.correctLabel}: {assignments[item.id]?.label || 'Not matched'}
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
             </div>
         </DndProvider>
     );

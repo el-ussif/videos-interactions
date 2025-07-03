@@ -5,6 +5,7 @@ import { videos } from "@/data/videos";
 import { Pause, Play, Volume2, VolumeX, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import useTokenStore from "@/store/token-store";
+import {useInteractionTimerStore} from "@/store/interaction-timer-store";
 
 export default function VideoPlayer() {
     const videoRef = useRef<HTMLVideoElement>(null);
@@ -19,6 +20,8 @@ export default function VideoPlayer() {
     const audioRef = useRef<HTMLAudioElement>(null);
     const currentVideo = videos[videoIndex];
     const {token} = useTokenStore()
+    const { startGlobalTimer } = useInteractionTimerStore.getState();
+
 
     useEffect(() => {
         document.body.style.overflow = "hidden";
@@ -155,6 +158,7 @@ export default function VideoPlayer() {
 
     const handleUserStart = () => {
         setHasUserInteracted(true);
+        startGlobalTimer()
         setTimeout(() => {
             const video = videoRef.current;
             const audio = audioRef.current;
@@ -246,9 +250,32 @@ export default function VideoPlayer() {
                         onEnded={handleEnded}
                     />
 
+                    <AnimatePresence>
+                        {currentInteraction && (
+                            <motion.div
+                                key={`interaction-${currentInteraction?.timecode}`}
+                                initial={{ opacity: 0, scale: 0.5 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.5 }}
+                                transition={{ duration: 0.4, ease: "easeOut" }}
+                                className={`
+                                    absolute inset-0 flex items-center justify-center z-50
+                                    ${currentInteraction.blocking && currentInteraction.blockingBg ? "bg-black/50 pointer-events-auto" : ""}
+                                `}
+                            >
+                                {currentInteraction.component?.({
+                                    onComplete: handleInteractionComplete,
+                                    disabled:
+                                        currentInteraction?.blocking &&
+                                        currentInteraction?.state === "preview",
+                                })}
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+
                     <div
                         key="interaction"
-                        className={`absolute inset-0 flex items-center justify-center z-50 ${
+                        className={`absolute inset-0 flex items-center justify-center hidden z-50 ${
                             (currentInteraction?.blocking && currentInteraction?.blockingBg )? "bg-black/50 pointer-events-auto" : ""
                         }`}
                     >

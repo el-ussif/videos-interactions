@@ -1,6 +1,40 @@
 import {Button} from "@/components/ui/button";
+import {useInteractionTimerStore} from "@/store/interaction-timer-store";
+import {useEffect} from "react";
+import useTokenStore from "@/store/token-store";
 
 export default function PerformanceSummary() {
+    const { stop, elapsedTime: responseTimes } = useInteractionTimerStore();
+    const {token} = useTokenStore()
+
+    useEffect(() => {
+        stop()
+    }, []);
+
+    console.log("responseTimes", responseTimes);
+
+    function formatElapsedTime(seconds: number): string {
+        const hrs = Math.floor(seconds / 3600);
+        const mins = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
+
+        const padded = (num: number) => num.toString().padStart(2, "0");
+
+        if (hrs > 0 && mins === 0) {
+            return `${hrs}hr 00min`;
+        }
+
+        if (hrs > 0) {
+            return `${hrs}hr ${padded(mins)}min`;
+        }
+
+        if (mins > 0) {
+            return `${padded(mins)}min ${padded(secs)}sec`;
+        }
+
+        return `${padded(secs)}sec`;
+    }
+
     return (
         <>
             <div className="items-center w-full max-w-[1140px]  flex justify-center text-black">
@@ -52,7 +86,7 @@ export default function PerformanceSummary() {
                                     </span>
                                 </div>
                                 <div className="font-bold text-left mt-4 py-8 text-7xl w-full">
-                                    1hr  30min
+                                    {formatElapsedTime(responseTimes)}
                                 </div>
                             </div>
 
@@ -105,7 +139,7 @@ export default function PerformanceSummary() {
                                     </span>
                                 </div>
                                 <div className="font-bold mt-4 py-8 text-8xl w-full">
-                                    40
+                                    {token}
                                 </div>
                                 <div className="font-semibold mt-1 w-full">
                                     out of 50 tokens

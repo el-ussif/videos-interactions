@@ -103,14 +103,18 @@ export default function QuizForm({
                 <div className="flex-1 w-full text-black">
                     <div className={getLayoutClasses()}>
                         {question.options.map((option, index) => (
-                            <div key={index} className={`transition-all duration-300 hover:cursor-pointer ${selectedAnswers.includes(index) ? 'text-white bg-green-1' : 'bg-white'} rounded-full flex justify-center items-center px-4 py-6`}>
-                                <label className="hover:cursor-pointer">
+                            <div
+                                onClick={() => handleAnswerChange(index)}
+                                key={index} className={`transition-all duration-300 hover:cursor-pointer ${selectedAnswers.includes(index) ? 'text-white bg-green-1' : 'bg-white'} rounded-full flex justify-center items-center px-4 py-6`}>
+                                <label
+                                    onClick={() => handleAnswerChange(index)}
+                                    className="hover:cursor-pointer"
+                                >
                                     <input
                                         type={getInputType()}
                                         name={question.type === "single" ? "quiz-answer" : `quiz-answer-${index}`}
                                         value={index}
                                         checked={selectedAnswers.includes(index)}
-                                        onChange={() => handleAnswerChange(index)}
                                         disabled={hasSubmitted}
                                         className="sr-only"
                                     />
