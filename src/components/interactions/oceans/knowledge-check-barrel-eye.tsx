@@ -30,8 +30,8 @@ export default function KnowledgeCheckBarrelEye({ onComplete }: { onComplete?: (
     }
 
     return (
-        <div className="items-center w-full max-w-[1140px] flex  justify-center text-black">
-            <div className="bg-white/30 border border-white/50 shadow-xl backdrop-blur-lg border-white/50 border rounded-[80px] xl py-8 px-[90px] text-white text-center shadow-3xl">
+        <div className="items-center w-full flex  justify-center text-black">
+            <div className="bg-white/30  w-[1200px] border border-white/50 shadow-xl backdrop-blur-lg border-white/50 border rounded-[80px] xl py-8 px-[90px] text-white text-center shadow-3xl">
                 <div>
                     <h2 className="text-white font-bold mt-6 text-6xl">
                         Knowledge Check

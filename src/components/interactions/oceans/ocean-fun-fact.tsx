@@ -9,8 +9,8 @@ interface OceanFunFactProps {
 export default function OceanFunFact({title, fishName, image, description}: OceanFunFactProps) {
     return (
         <>
-            <div className="items-center w-full flex  justify-end text-black">
-                <div className="max-w-[552px] px-[56px] py-14 mr-[50px] rounded-[80px] overflow-hidden
+            <div className="items-center w-full flex text-black">
+                <div className="max-w-[650px] px-[56px] py-14 ml-[100px] rounded-[80px] overflow-hidden
      bg-green-1 border border-white/20 shadow-xl">
                     <div className="text-white text-center space-y-6">
                         <h1 className="font-bold text-8xl">

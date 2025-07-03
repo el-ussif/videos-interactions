@@ -4,10 +4,10 @@ export default function OceanExpert1({ onComplete,   disabled = false,
                                      }: { onComplete?: () => void,   disabled?: boolean;
 }) {
     return (
-        <div className="items-center w-full flex  text-black">
-            <div className="max-w-[500px] px-[56px] ml-[50px] rounded-[80px] overflow-hidden
-     bg-white/30 border border-white/50 shadow-xl backdrop-blur-lg">
-                <div className="p-8 text-center space-y-6">
+        <div className="items-center w-full flex justify-end text-black">
+            <div className="max- w-[700px] w-1s/2 px-[56px] mr-[100px]  rounded-[80px] overflow-hidden
+     bg-white/30 shadow-xl backdrop-saturate-[100%]">
+                <div className="px-8 py-16 text-center space-y-6">
                     <div className="relative">
                         <div className="w-32 h-32 mx-auto rounded-full overflow-hidden">
                             <img

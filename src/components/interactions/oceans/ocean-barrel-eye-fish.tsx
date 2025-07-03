@@ -1,8 +1,8 @@
 export default function OceanBarrelEyeFish() {
     return (
-        <div className="items-center w-full flex  justify-end text-black">
-            <div className="max-w-[480px] px-[42px] py-12 mr-[50px] rounded-[80px] overflow-hidden
-     bg-white/10 border border-white/20 shadow-xl backdrop-blur-lg">
+        <div className="items-center w-full flex   text-black">
+            <div className="max-w-[680px] px-[42px] py-12 ml-[100px] rounded-[80px] overflow-hidden
+     bg-white/10 border border-white/20 shadow-xl backdrop-blur-xl">
                 <div className="p-8 text-center space-y-6">
                     <div className="relative">
                         <div className=" mx-auto rounded-full ">
@@ -11,7 +11,7 @@ export default function OceanBarrelEyeFish() {
                                 alt="Carlos Ramirez"
                                 width={166}
                                 height={166}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover scale-x-[-1]"
                             />
                         </div>
                     </div>

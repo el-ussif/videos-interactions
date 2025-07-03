@@ -1,12 +1,12 @@
 export default function OceanAnglerFish() {
     return (
-        <div className="items-center w-full flex  justify-end text-black">
-            <div className="relative max-w-[480px] px-[42px] py-12 mr-[50px] rounded-[80px] overflow-hidden
+        <div className="items-center w-full flex  text-black">
+            <div className="relative max-w-[600px] px-[42px] py-4 ml-[100px] rounded-[80px] overflow-hidden
      bg-white/10 border border-white/20 shadow-xl backdrop-blur-lg">
                 <div className="absolute -top-4 left-0">
-                    <img className="w-[110px]" src="/images/oceans/bull-left-1.png" alt=""/>
+                    <img className="w-[100px]" src="/images/oceans/bull-left-1.png" alt=""/>
                 </div>
-                <div className="absolute top-[30%] right-0">
+                <div className="absolute top-[20%] right-0">
                     <img className="w-[50px]" src="/images/oceans/bull-right-1.png" alt=""/>
                 </div>
                 <div className="p-8 text-center space-y-6">
@@ -14,10 +14,10 @@ export default function OceanAnglerFish() {
                         <div className=" mx-auto rounded-full ">
                             <img
                                 src="/images/oceans/angler-fish-2.png"
-                                alt="Carlos Ramirez"
-                                width={166}
-                                height={166}
-                                className="w-full h-full object-cover"
+                                alt="angler-fish-2"
+                                width={250}
+                                height={250}
+                                className="object-cover mx-auto"
                             />
                         </div>
                     </div>

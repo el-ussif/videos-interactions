@@ -32,7 +32,7 @@ function LabelsContainer({ labels, onReturn }: {
         <div
             ref={drop}
             className={clsx(
-                "grid grid-cols-3 mt- gap-3 rounded-lg min-h-10",
+                "grid grid-cols-3 mt-5 gap-3 rounded-lg min-h-10",
                 isOver && "bg-gray-100"
             )}
         >

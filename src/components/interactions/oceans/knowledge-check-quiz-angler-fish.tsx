@@ -7,9 +7,9 @@ const fishQuizData = {
     id: "football-fish",
     question: 'What is the "bulb" on top of a Football Fish\'s head for?',
     options: ["Lighting up the ocean", "Attracting prey", "Defending against predators"],
-    correctAnswers: [1], // Attracting prey
-    points: 10,
-    type: "single" as const,
+    correctAnswers: [1,2], // Attracting prey
+    points: 20,
+    type: "multiple" as const,
 }
 
 export default function KnowledgeCheckQuizAnglerFish({ onComplete }: { onComplete?: () => void }) {

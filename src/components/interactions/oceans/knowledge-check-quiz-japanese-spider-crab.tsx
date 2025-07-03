@@ -13,7 +13,7 @@ const fishQuizData = {
         "Temperature changes reduce the amount of mating"
     ],
     correctAnswers: [0,2],
-    points: 10,
+    points: 20,
     type: "multiple" as const,
 }
 

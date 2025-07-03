@@ -1,7 +1,7 @@
 export default function OceanJapaneseSpiderCrab() {
     return (
         <div className="items-center w-full flex  justify-end text-black">
-            <div className="relative max-w-[480px] px-[45px] py-7 mr-[50px] rounded-[80px] overflow-hidden
+            <div className="relative max-w-[600px] px-[45px] py-7 mr-[100px] rounded-[80px] overflow-hidden
      bg-white/10 border border-white/20 shadow-xl backdrop-blur-lg">
                 <div className="absolute -top-4 left-0">
                     <img className="w-[130px]" src="/images/oceans/bull-left-1.png" alt=""/>
@@ -15,9 +15,9 @@ export default function OceanJapaneseSpiderCrab() {
                             <img
                                 src="/images/oceans/japanese-spider-crab-2.png"
                                 alt="Carlos Ramirez"
-                                width={166}
-                                height={166}
-                                className="w-full h-full object-cover"
+                                width={450}
+                                height={256}
+                                className="mx-auto object-cover"
                             />
                         </div>
                     </div>

@@ -221,44 +221,6 @@ export default function VideoPlayer() {
         }
     }
 
-    useEffect(() => {
-        if (!hasUserInteracted) return;
-
-        let canceled = false;
-
-        const preloadVideo = (videoSrc: string) => {
-            const link = document.createElement("link");
-            link.rel = "preload";
-            link.as = "video";
-            link.href = videoSrc;
-            document.head.appendChild(link);
-        };
-
-        const preloadNextVideos = async () => {
-            for (let i = videoIndex + 1; i < videos.length; i++) {
-                if (canceled) return;
-
-                const videoSrc = videos[i].src;
-
-                if ('requestIdleCallback' in window) {//eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    (window as any).requestIdleCallback(() => {
-                        preloadVideo(videoSrc);
-                    });
-                } else {
-                    setTimeout(() => preloadVideo(videoSrc), 100 * i); // spacing by 100ms * i
-                }
-                // Optionally wait between each preload (soft pacing)
-                await new Promise((res) => setTimeout(res, 300)); // 300ms delay
-            }
-        };
-
-        preloadNextVideos();
-
-        return () => {
-            canceled = true;
-        };
-    }, [hasUserInteracted]);
-
     return (
         <div className="fixed inset-0 bg-black z-50">
             {!hasUserInteracted ? (
@@ -267,7 +229,7 @@ export default function VideoPlayer() {
                         onClick={handleUserStart}
                         className="bg-white text-black px-6 py-3 rounded text-xl hover:bg-gray-200 transition"
                     >
-                        ▶️ Lancer la vidéo
+                        ▶️ Play
                     </button>
                 </div>
             ) : (
@@ -287,7 +249,7 @@ export default function VideoPlayer() {
                     <div
                         key="interaction"
                         className={`absolute inset-0 flex items-center justify-center z-50 ${
-                            currentInteraction?.blocking ? "bg-black/70 pointer-events-auto" : "pointer-events-none"
+                            (currentInteraction?.blocking && currentInteraction?.blockingBg )? "bg-black/50 pointer-events-auto" : ""
                         }`}
                     >
                         {currentInteraction?.component({

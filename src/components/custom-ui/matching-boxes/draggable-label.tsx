@@ -18,7 +18,7 @@ export default function DraggableLabel({item}: { item: DragItem }) {
         <div
             ref={drag}
             className={clsx(
-                'px-4 py-2 rounded-full shadow cursor-move font-medium transition-opacity border bg-white text-gray-800',
+                'px-4 py-5 rounded-full shadow cursor-move font-medium transition-opacity border bg-white text-gray-800',
                 isDragging ? 'opacity-50' : 'opacity-100'
             )}
         >

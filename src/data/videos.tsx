@@ -19,14 +19,26 @@ export type InteractionComponentProps = {
     onComplete?: VoidFunction;
 };
 
+/*
+{
+                timecode: 0.1,
+                previewDuration: 15.5,
+                duration: Infinity,
+                canGoNext: false,
+                blocking: true,
+                blockingBg: false,
+                component: (props: InteractionComponentProps) => <OceanExpert1 {...props} />,
+            },
+ */
+
 export const videos = [
     {
         id: 1,
         src: "/videos/ocean/Frame01.mp4",
         interactions: [
             {
-                timecode: 0.1,
-                duration: 5,
+                timecode: 0,
+                duration: 10,
                 blocking: false,
                 component: (props: InteractionComponentProps) => <OceanObjective {...props} />,
             },
@@ -58,7 +70,7 @@ export const videos = [
         src: "/videos/ocean/Frame02.mp4",
         interactions: [
             {
-                timecode: 0.1,
+                timecode: 0.001,
                 duration: Infinity,
                 blocking: true,
                 loop: true,
@@ -72,9 +84,12 @@ export const videos = [
         src: "/videos/ocean/Frame03.mp4",
         interactions: [
             {
-                timecode: 3,
-                duration: 5,
+                timecode: 0,
+                previewDuration: 15.5,
+                duration: Infinity,
+                canGoNext: false,
                 blocking: true,
+                blockingBg: false,
                 component: (props: InteractionComponentProps) => <OceanExpert1 {...props} />,
             },
         ],
@@ -84,8 +99,8 @@ export const videos = [
         src: "/videos/ocean/Frame04.mp4",
         interactions: [
             {
-                timecode: 1,
-                duration: 10,
+                timecode: 0.2,
+                duration: 30,
                 blocking: false,
                 component: () => <OceanBarrelEyeFish />,
             },
@@ -96,8 +111,8 @@ export const videos = [
         src: "/videos/ocean/Frame05.mp4",
         interactions: [
             {
-                timecode: 3,
-                duration: 10,
+                timecode: 0.3,
+                duration: 50,
                 blocking: false,
                 component: () => <OceanBarrelEyeFishSwim/>,
             },
@@ -108,8 +123,8 @@ export const videos = [
         src: "/videos/ocean/Frame06.mp4",
         interactions: [
             {
-                timecode: 1,
-                duration: 10,
+                timecode: 0.2,
+                duration: 50,
                 blocking: false,
                 component: () => <OceanAnglerFish/>,
             },
@@ -120,13 +135,14 @@ export const videos = [
         src: "/videos/ocean/Frame07.mp4",
         interactions: [
             {
-                timecode: 1,
-                duration: 10,
+                timecode: 0.2,
+                duration: 15,
                 blocking: false,
+                blockingBg: false,
                 component: () => <OceanAnglerFishSwim />,
             },
             {
-                timecode: 20,
+                timecode: 28.9,
                 duration: null,
                 blocking: true,
                 component: (props: InteractionComponentProps) => <KnowledgeCheckQuizAnglerFish {...props} />,
@@ -138,27 +154,27 @@ export const videos = [
         src: "/videos/ocean/Frame08.mp4",
         interactions: [
             {
-                timecode: 2,
-                duration: 10,
+                timecode: 0.2,
+                duration: 50,
                 blocking: false,
                 component: () => <OceanJapaneseSpiderCrab/>,
             },
         ],
-    },
-    {
+    },{
         id: 9,
         src: "/videos/ocean/Frame09.mp4",
         interactions: [
             {
-                timecode: 2,
-                duration: 10,
+                timecode: 0,
+                duration: 15,
                 blocking: false,
                 component: () => <OceanJapaneseSpiderFunFact/>,
             },
             {
-                timecode: 18,
+                timecode: 22,
                 duration: null,
                 blocking: true,
+                canGoNext: true,
                 component: (props: InteractionComponentProps) => <KnowledgeCheckQuizJapaneseSpiderCrab {...props} />,
             },
         ],
@@ -168,13 +184,13 @@ export const videos = [
         src: "/videos/ocean/Frame10.mp4",
         interactions: [
             {
-                timecode: 5,
+                timecode: 0,
                 duration: false,
                 blocking: true,
                 component: (props: InteractionComponentProps) => <KnowledgeCheckFishesMatching {...props} />,
             },
             {
-                timecode: 15,
+                timecode: 30,
                 duration: null,
                 blocking: true,
                 component: (props: InteractionComponentProps) => <KnowledgeCheckBarrelEye {...props} />,
@@ -186,8 +202,10 @@ export const videos = [
         src: "/videos/ocean/Frame14.mp4",
         interactions: [
             {
-                timecode: 1,
-                duration: 5,
+                timecode: 0,
+                previewDuration: 16,
+                duration: Infinity,
+                canGoNext: true,
                 blocking: true,
                 component: (props: InteractionComponentProps) => <OceanStopper {...props} />,
             },
@@ -198,19 +216,7 @@ export const videos = [
         src: "/videos/ocean/Frame08.mp4",
         interactions: [
             {
-                timecode: 1,
-                duration: 10,
-                blocking: true,
-                component: () => <PerformanceSummary/>,
-            },
-        ],
-    },
-    {
-        id: 12,
-        src: "/videos/ocean/Frame08.mp4",
-        interactions: [
-            {
-                timecode: 0.1,
+                timecode: 0,
                 duration: 10,
                 blocking: true,
                 loop: true,
