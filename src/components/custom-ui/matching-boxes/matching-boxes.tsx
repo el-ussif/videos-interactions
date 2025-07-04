@@ -3,7 +3,6 @@ import React, {useCallback, useState} from 'react';
 import {DndProvider} from 'react-dnd';
 import {HTML5Backend} from 'react-dnd-html5-backend';
 import {v4 as uuidv4} from 'uuid';
-import clsx from 'clsx';
 import {Button} from "@/components/ui/button";
 import LabelsContainer from "@/components/custom-ui/matching-boxes/labels-container";
 import DropTarget from "@/components/custom-ui/matching-boxes/drop-target";
