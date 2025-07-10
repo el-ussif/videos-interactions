@@ -11,6 +11,7 @@ export default function VideoPlayer() {
     // eslint-disable-next-line
     const videoRef = useRef<any>(null);
     const [videoIndex, setVideoIndex] = useState(0);
+    // eslint-disable-next-line
     const [currentInteraction, setCurrentInteraction] = useState<null | any>(null);
     const [displayedTimecodes, setDisplayedTimecodes] = useState<number[]>([]);
     const [hasUserInteracted, setHasUserInteracted] = useState(false);
