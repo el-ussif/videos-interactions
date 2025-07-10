@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { videos } from "@/data/videos";
-import { Pause, Play, Volume2, VolumeX, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import {useEffect, useRef, useState} from "react";
+import {videos} from "@/data/videos";
+import {Play, VolumeX, X} from "lucide-react";
+import {AnimatePresence, motion} from "framer-motion";
 import useTokenStore from "@/store/token-store";
 import {useInteractionTimerStore} from "@/store/interaction-timer-store";
 
@@ -323,7 +323,7 @@ export default function VideoPlayer() {
                                                     } bg-[#DBE2EA]/40 h-[60px] w-[60px] rounded-full items-center justify-center flex transition`}
                                                     disabled={currentInteraction?.blocking}
                                                 >
-                                                    {videoRef.current?.paused ? <Play/> : <Pause/>}
+                                                    {videoRef.current?.paused ? <Play/> : <img alt="" width={20} height={27} src="/images/pause.png"/>}
                                                 </button>
                                             </div>
 
@@ -335,7 +335,7 @@ export default function VideoPlayer() {
                                                 }}
                                                 className="text-white hover:cursor-pointer bg-[#DBE2EA]/40 h-[60px] w-[60px] rounded-full items-center justify-center flex transition"
                                             >
-                                                {videoRef.current?.muted ? <VolumeX/> : <Volume2/>}
+                                                {videoRef.current?.muted ? <VolumeX/> : <img src="/images/volume-on.png" alt="" width={32} height={32} />}
                                             </button>
                                         </div>
                                     </motion.div>
@@ -365,7 +365,7 @@ export default function VideoPlayer() {
                                 transition={{duration: 0.3}}
                                 className="fixed min-w-[150px] z-100 top-6 right-4 text-white bg-[#DBE2EA]/40 flex rounded-full items-center justify-center"
                             >
-                                <img className="w-[54px]" src="/images/globe-kin-gem.png" alt=""/>
+                                <img className="h-[54px] w-[54px]" src="/images/globe-kin-gem.png" alt=""/>
                                 <span className="w-full font-bold text-xl justify-center">
                                     {token}
                                 </span>
