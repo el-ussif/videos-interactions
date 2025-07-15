@@ -318,6 +318,7 @@ export default function VideoPlayer() {
                     </div>
                     <button
                         id="starter"
+                        disabled={loadingProgress<100}
                         onClick={handleUserStart}
                         className="mt-4 text-white px-4 py-2 bg-blue-600 rounded-full"
                     >
