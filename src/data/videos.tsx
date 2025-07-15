@@ -32,12 +32,27 @@ export type InteractionComponentProps = {
  */
 
 export const videos = [
+
+    {
+        id: 2,
+        src: "/videos/ocean/Frame02.mp4",
+        interactions: [
+            {
+                timecode: 0.0023,
+                duration: Infinity,
+                blocking: true,
+                loop: true,
+                canGoNext: true,
+                component: (props: InteractionComponentProps) => <OceanStarter {...props} />,
+            },
+        ],
+    },
     {
         id: 1,
         src: "/videos/ocean/Frame01.mp4",
         interactions: [
             {
-                timecode: 0,
+                timecode: 1,
                 duration: 10,
                 blocking: false,
                 component: (props: InteractionComponentProps) => <OceanObjective {...props} />,
@@ -63,20 +78,6 @@ export const videos = [
                 component: (props: InteractionComponentProps) => <OceanObjective {...props} />,
             },
             */
-        ],
-    },
-    {
-        id: 2,
-        src: "/videos/ocean/Frame02.mp4",
-        interactions: [
-            {
-                timecode: 0.001,
-                duration: Infinity,
-                blocking: true,
-                loop: true,
-                canGoNext: true,
-                component: (props: InteractionComponentProps) => <OceanStarter {...props} />,
-            },
         ],
     },
     {
