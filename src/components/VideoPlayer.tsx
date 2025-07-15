@@ -10,6 +10,7 @@ import { useInteractionTimerStore } from "@/store/interaction-timer-store";
 export default function VideoPlayer() {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [videoIndex, setVideoIndex] = useState(0);
+    // eslint-disable-next-line
     const [currentInteraction, setCurrentInteraction] = useState<null | any>(null);
     const [displayedTimecodes, setDisplayedTimecodes] = useState<number[]>([]);
     const [hasUserInteracted, setHasUserInteracted] = useState(false);
@@ -119,7 +120,7 @@ export default function VideoPlayer() {
                 videoRef.current!.src = blobUrl;
                 videoRef.current!.onended = () => {
                     URL.revokeObjectURL(blobUrl);
-                    //handleEnded();
+                    handleEnded();
                 };
             } else {
                 videoRef.current!.src = currentVideo.src;
@@ -147,37 +148,50 @@ export default function VideoPlayer() {
     useEffect(() => {
         const interval = setInterval(() => {
             const video = videoRef.current;
-            if (!video) return;
-            const currentTime = Math.floor(video.currentTime);
+            if (!video || !currentVideo?.interactions) return;
 
-            const toTrigger: any = currentVideo.interactions?.find(
-                (i: any) => Math.floor(i.timecode) === currentTime && !displayedTimecodes.includes(i.timecode)
+            const currentTime = video.currentTime;
+
+            // Trouve la prochaine interaction déclenchable
+            // eslint-disable-next-line
+            const toTrigger: any = currentVideo.interactions.find(
+                // eslint-disable-next-line
+                (i: any) =>
+                    i.timecode <= (currentTime) &&
+                    !displayedTimecodes.includes(i.timecode)
             );
 
-            if (toTrigger) {
-                setDisplayedTimecodes((prev) => [...prev, toTrigger.timecode]);
+            if (!toTrigger) {
+                return;
+            }
 
-                if (toTrigger.blocking && toTrigger.previewDuration) {
-                    setCurrentInteraction({ ...toTrigger, state: "preview" });
-                    setTimeout(() => {
-                        video.pause();
-                        setCurrentInteraction({ ...toTrigger, state: "blocking" });
-                    }, toTrigger.previewDuration * 1000);
-                } else if (toTrigger.blocking) {
-                    if (!toTrigger.loop){
-                        video.pause();
-                    }
+            setDisplayedTimecodes((prev) => [...prev, toTrigger.timecode]);
+
+            if (toTrigger.blocking && toTrigger.previewDuration) {
+                const previewDuration = toTrigger.previewDuration > Number(videoRef?.current?.duration??0) ? videoRef?.current?.duration : toTrigger.previewDuration;
+                setCurrentInteraction({ ...toTrigger, state: "preview" });
+                setTimeout(() => {
+                    video.pause();
                     setCurrentInteraction({ ...toTrigger, state: "blocking" });
-                } else {
-                    interactionTimeRef.current = 0;
-                    interactionStartRef.current = performance.now();
-                    setCurrentInteraction({ ...toTrigger, state: "preview" });
-                    startInteractionTimer(toTrigger.duration || 5);
+                }, previewDuration * 1000);
+            } else if (toTrigger.blocking) {
+                if (!toTrigger.loop) {
+                    video.pause();
                 }
+                setCurrentInteraction({ ...toTrigger, state: "blocking" });
+            } else {
+                interactionTimeRef.current = 0;
+                interactionStartRef.current = performance.now();
+                setCurrentInteraction({ ...toTrigger, state: "preview" });
+                startInteractionTimer(toTrigger.duration || 5);
             }
         }, 300);
+
         return () => clearInterval(interval);
-    }, [currentVideo, displayedTimecodes]);
+    }, [currentVideo, displayedTimecodes, videoRef?.current]);
+
+    console.log("displayedTimecodes", displayedTimecodes);
+
 
     const startInteractionTimer = (duration: number) => {
         const step = (now: number) => {
@@ -203,6 +217,8 @@ export default function VideoPlayer() {
             }
         };
     }, []);
+
+    console.log("videoRef duration", videoRef?.current?.duration);
 
     useEffect(() => {
         let frame: number;
@@ -274,16 +290,20 @@ export default function VideoPlayer() {
     const handleEnded = () => {
         if (videoIndex < videos.length - 1) {
             setVideoIndex(videoIndex + 1);
+            setDisplayedTimecodes([])
         }
     };
+
     const handleInteractionComplete = () => {
         if (currentInteraction?.canGoNext) {
+            setCurrentInteraction(null);
             handleEnded();
         } else {
             setCurrentInteraction(null);
             videoRef.current?.play();
         }
     };
+
 
     return (
         <div className="fixed inset-0 bg-black z-50">
@@ -326,7 +346,7 @@ export default function VideoPlayer() {
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.5 }}
                             transition={{ duration: 0.4, ease: "easeOut" }}
-                            className={`absolute inset-0 flex items-center justify-center z-50 ${currentInteraction.blocking && currentInteraction.blockingBg ? "bg-black/50 pointer-events-auto" : ""}`}
+                            className={`absolute inset--0 top-[15%] inset-x-0 flex items-center justify-center z-50 ${currentInteraction.blocking && currentInteraction.blockingBg ? "bg-black/50 pointer-events-auto" : ""}`}
                         >
                             {currentInteraction.component?.({
                                 onComplete: handleInteractionComplete,
@@ -365,7 +385,7 @@ export default function VideoPlayer() {
                                             className={`text-white ${currentInteraction?.blocking ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"} bg-[#DBE2EA]/40 h-[60px] w-[60px] rounded-full items-center justify-center flex transition`}
                                         >
                                             {videoRef.current?.paused ? (
-                                                <Play />
+                                                <Play fontWeight="bold" size={32} />
                                             ) : (
                                                 <img alt="" width={20} height={27} src="/images/pause.png" />
                                             )}
@@ -374,7 +394,9 @@ export default function VideoPlayer() {
                                         <button
                                             onClick={() => {
                                                 const video = videoRef.current;
+                                                const audio = audioRef.current;
                                                 if (video) video.muted = !video.muted;
+                                                if (audio) audio.muted = !audio.muted;
                                             }}
                                             className="text-white hover:cursor-pointer bg-[#DBE2EA]/40 h-[60px] w-[60px] rounded-full items-center justify-center flex transition"
                                         >

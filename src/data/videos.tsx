@@ -32,21 +32,6 @@ export type InteractionComponentProps = {
  */
 
 export const videos = [
-
-    {
-        id: 2,
-        src: "/videos/ocean/Frame02.mp4",
-        interactions: [
-            {
-                timecode: 0.0023,
-                duration: Infinity,
-                blocking: true,
-                loop: true,
-                canGoNext: true,
-                component: (props: InteractionComponentProps) => <OceanStarter {...props} />,
-            },
-        ],
-    },
     {
         id: 1,
         src: "/videos/ocean/Frame01.mp4",
@@ -81,14 +66,28 @@ export const videos = [
         ],
     },
     {
+        id: 2,
+        src: "/videos/ocean/Frame02.mp4",
+        interactions: [
+            {
+                timecode: 0,
+                duration: Infinity,
+                blocking: true,
+                loop: true,
+                canGoNext: true,
+                component: (props: InteractionComponentProps) => <OceanStarter {...props} />,
+            },
+        ],
+    },
+    {
         id: 3,
         src: "/videos/ocean/Frame03.mp4",
         interactions: [
             {
                 timecode: 0,
-                previewDuration: 15.5,
+                previewDuration: 16.178005,
                 duration: Infinity,
-                canGoNext: false,
+                canGoNext: true,
                 blocking: true,
                 blockingBg: false,
                 component: (props: InteractionComponentProps) => <OceanExpert1 {...props} />,
@@ -100,9 +99,9 @@ export const videos = [
         src: "/videos/ocean/Frame04.mp4",
         interactions: [
             {
-                timecode: 0.2,
-                duration: 30,
-                blocking: false,
+                timecode: 0,
+                duration: Infinity,
+                blocking: true,
                 component: () => <OceanBarrelEyeFish />,
             },
         ],
@@ -112,7 +111,7 @@ export const videos = [
         src: "/videos/ocean/Frame05.mp4",
         interactions: [
             {
-                timecode: 0.3,
+                timecode: 0,
                 duration: 50,
                 blocking: false,
                 component: () => <OceanBarrelEyeFishSwim/>,
@@ -124,7 +123,7 @@ export const videos = [
         src: "/videos/ocean/Frame06.mp4",
         interactions: [
             {
-                timecode: 0.2,
+                timecode: 0,
                 duration: 50,
                 blocking: false,
                 component: () => <OceanAnglerFish/>,
@@ -136,7 +135,7 @@ export const videos = [
         src: "/videos/ocean/Frame07.mp4",
         interactions: [
             {
-                timecode: 0.2,
+                timecode: 0,
                 duration: 15,
                 blocking: false,
                 blockingBg: false,
@@ -155,13 +154,14 @@ export const videos = [
         src: "/videos/ocean/Frame08.mp4",
         interactions: [
             {
-                timecode: 0.2,
+                timecode: 0,
                 duration: 50,
                 blocking: false,
                 component: () => <OceanJapaneseSpiderCrab/>,
             },
         ],
-    },{
+    },
+    {
         id: 9,
         src: "/videos/ocean/Frame09.mp4",
         interactions: [
@@ -186,7 +186,7 @@ export const videos = [
         interactions: [
             {
                 timecode: 0,
-                duration: false,
+                duration: null,
                 blocking: true,
                 component: (props: InteractionComponentProps) => <KnowledgeCheckFishesMatching {...props} />,
             },
@@ -205,7 +205,7 @@ export const videos = [
             {
                 timecode: 0,
                 previewDuration: 16,
-                duration: Infinity,
+                duration: null,
                 canGoNext: true,
                 blocking: true,
                 component: (props: InteractionComponentProps) => <OceanStopper {...props} />,

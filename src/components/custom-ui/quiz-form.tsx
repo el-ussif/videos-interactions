@@ -96,7 +96,6 @@ export default function QuizForm({
         return question.type === "single" ? "radio" : "checkbox"
     }
 
-    console.log("question.correctAnswers", selectedAnswers);
     return (
         <div className={` ${className}`}>
             <div className={`flex flex-col items-center gap-8`}>
@@ -118,7 +117,10 @@ export default function QuizForm({
                                         disabled={hasSubmitted}
                                         className="sr-only"
                                     />
-                                    <span className="text-lg font-medium  hover:cursor-pointer  flex-1">
+                                    <span
+                                        className="text-lg font-medium  hover:cursor-pointer  flex-1"
+                                        onClick={() => handleAnswerChange(index)}
+                                    >
                                         {option}
                                         {
                                             hasSubmitted && question.correctAnswers.includes(index) && (

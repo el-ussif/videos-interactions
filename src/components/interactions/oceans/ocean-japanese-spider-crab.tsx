@@ -1,7 +1,7 @@
 export default function OceanJapaneseSpiderCrab() {
     return (
-        <div className="items-center w-full flex  justify-end text-black">
-            <div className="relative max-w-[600px] px-[45px] py-7 mr-[100px] rounded-[80px] overflow-hidden
+        <div className="items-center  flex  justify-end text-black">
+            <div className="relative w-[486px] px-[40px] py-5 ml-[100px] rounded-[80px] overflow-hidden
      bg-white/10 border border-white/20 shadow-xl backdrop-blur-lg">
                 <div className="absolute -top-4 left-0">
                     <img className="w-[130px]" src="/images/oceans/bull-left-1.png" alt=""/>
@@ -11,48 +11,48 @@ export default function OceanJapaneseSpiderCrab() {
                 </div>
                 <div className="py-8 text-center space-y-6">
                     <div className="relative">
-                        <div className="px-6 mx-auto rounded-full ">
+                        <div className="mx-auto rounded-full ">
                             <img
                                 src="/images/oceans/japanese-spider-crab-2.png"
                                 alt="Carlos Ramirez"
-                                width={450}
-                                height={256}
-                                className="mx-auto object-cover"
+                                width={340}
+                                height={195}
+                                className="mx-auto w-[340px] h-[195px] object-cover"
                             />
                         </div>
                     </div>
 
-                    <div className="space-y-8 flex mt-6 text-2xl text-white flex-wrap">
+                    <div className="space-y-8 flex mt-4 text-2xl text-white flex-wrap">
                         <div className="w-full">
-                            <h2 className="text-3xl font-bold">
+                            <h2 className="text-[34px] font-bold">
                                 Japanese Spider Crab
                             </h2>
                         </div>
-                        <div className="space-y-5  px-9 text-left">
-                            <div className="flex items-center space-x-3">
-                                <div className="w-2 h-2 bg-white rounded-full flex-shrink-0"></div>
-                                <p className="text-lg">
+                        <div className="space-y-5 text-[24px] text-left">
+                            <div className="flex items-start space-x-3">
+                                <div className="w-2 h-2 mt-2.5 bg-white  flex-shrink-0"></div>
+                                <p className="">
                                     Lives 660-1,800 feet underwater near Japan
                                 </p>
                             </div>
 
-                            <div className="flex items-center space-x-3">
-                                <div className="w-2 h-2 bg-white rounded-full flex-shrink-0"></div>
-                                <p className="text-lg">
+                            <div className="flex items-start space-x-3">
+                                <div className="w-2 h-2 mt-2.5 bg-white  flex-shrink-0"></div>
+                                <p className="">
                                     Can grow to be 12 feet wide
                                 </p>
                             </div>
 
-                            <div className="flex items-center space-x-3">
-                                <div className="w-2 h-2 bg-white rounded-full flex-shrink-0"></div>
-                                <p className="text-lg">
+                            <div className="flex items-start space-x-3">
+                                <div className="w-2 h-2 mt-2.5 bg-white  flex-shrink-0"></div>
+                                <p className="">
                                     Feeds on dead fish
                                 </p>
                             </div>
 
-                            <div className="flex items-center space-x-3">
-                                <div className="w-2 h-2 bg-white rounded-full flex-shrink-0"></div>
-                                <p className="text-lg">
+                            <div className="flex items-start space-x-3">
+                                <div className="w-2 h-2 mt-2.5 bg-white  flex-shrink-0"></div>
+                                <p className="">
                                     Heavily impacted by hunting and climate change
                                 </p>
                             </div>

@@ -22,21 +22,21 @@ export default function OceanStarter({ onComplete }: { onComplete?: () => void }
                 {/* Fish illustrations */}
                 <div className="flex justify-center items-center gap-x-[67px] mb-16">
                     {/* Anglerfish */}
-                    <div className="w-[180px] h-[180px] bg-white/30 rounded-full flex items-center justify-center backdrop-blur-sm">
-                        <div className="scale-[125%]">
+                    <div className="w-[180px] h-[180px] bg-blue-300/30  opacity-[50%] rounded-full flex items-center justify-center backdrop-blur-sm">
+                        <div className="scale-[125%] z-1">
                             <img src="/images/oceans/angle-fish.png" alt=""/>
                         </div>
                     </div>
 
                     {/* Deep sea creature */}
-                    <div className="w-[180px] h-[180px] bg-white/30 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <div className="w-[180px] h-[180px] bg-blue-300/30  opacity-[50%] rounded-full flex items-center justify-center backdrop-blur-sm">
                         <div className="scale-[125%]">
                             <img src="/images/oceans/japanese-spider-crab.png" alt=""/>
                         </div>
                     </div>
 
                     {/* Another fish */}
-                    <div className="w-[180px] h-[180px] bg-white/30 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <div className="w-[180px] h-[180px] bg-blue-300/30  opacity-[50%] rounded-full flex items-center justify-center backdrop-blur-sm">
                         <div className="scale-[125%]">
                             <img src="/images/oceans/barrel-eye-fish.png" alt=""/>
                         </div>

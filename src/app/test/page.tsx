@@ -1,4 +1,3 @@
-import VideoPlayer from "@/components/VideoPlayer";
 import Link from "next/link";
 
 export default function Tests() {
