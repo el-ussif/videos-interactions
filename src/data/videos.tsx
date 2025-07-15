@@ -85,7 +85,7 @@ export const videos = [
         interactions: [
             {
                 timecode: 0,
-                previewDuration: 16.178005,
+                previewDuration: 16.17800,
                 duration: Infinity,
                 canGoNext: true,
                 blocking: true,
@@ -101,7 +101,7 @@ export const videos = [
             {
                 timecode: 0,
                 duration: Infinity,
-                blocking: true,
+                blocking: false,
                 component: () => <OceanBarrelEyeFish />,
             },
         ],
