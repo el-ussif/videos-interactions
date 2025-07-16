@@ -1,6 +1,6 @@
 export default function OceanJapaneseSpiderCrab() {
     return (
-        <div className="items-center  flex  justify-end text-black">
+        <div className="w-full text-black">
             <div className="relative w-[486px] px-[40px] py-5 ml-[100px] rounded-[80px] overflow-hidden
      bg-white/10 border border-white/20 shadow-xl backdrop-blur-lg">
                 <div className="absolute -top-4 left-0">

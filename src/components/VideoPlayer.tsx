@@ -168,12 +168,7 @@ export default function VideoPlayer() {
             setDisplayedTimecodes((prev) => [...prev, toTrigger.timecode]);
 
             if (toTrigger.blocking && toTrigger.previewDuration) {
-                const previewDuration = toTrigger.previewDuration > Number(videoRef?.current?.duration??0) ? videoRef?.current?.duration : toTrigger.previewDuration;
                 setCurrentInteraction({ ...toTrigger, state: "preview" });
-                setTimeout(() => {
-                    video.pause();
-                    setCurrentInteraction({ ...toTrigger, state: "blocking" });
-                }, previewDuration * 1000);
             } else if (toTrigger.blocking) {
                 if (!toTrigger.loop) {
                     video.pause();
@@ -190,7 +185,18 @@ export default function VideoPlayer() {
         return () => clearInterval(interval);
     }, [currentVideo, displayedTimecodes, videoRef?.current]);
 
-    console.log("displayedTimecodes", displayedTimecodes);
+    useEffect(() => {
+        if (currentInteraction?.state === 'preview' && currentInteraction?.previewDuration > 0 && Number(videoRef?.current?.currentTime??0).toFixed(3) === Number(currentInteraction?.previewDuration??0).toFixed(3) && videoRef?.current) {
+            videoRef?.current?.pause()
+            // eslint-disable-next-line
+            setCurrentInteraction((prev: any) => {
+                return {
+                    ...prev,
+                    state: "blocking"
+                }
+            })
+        }
+    }, [videoRef?.current?.currentTime]);
 
 
     const startInteractionTimer = (duration: number) => {
@@ -218,7 +224,6 @@ export default function VideoPlayer() {
         };
     }, []);
 
-    console.log("videoRef duration", videoRef?.current?.duration);
 
     useEffect(() => {
         let frame: number;

@@ -1,7 +1,7 @@
 export default function OceanAnglerFish() {
     return (
-        <div className="items-center w-[540px] flex  text-black">
-            <div className="relative px-[42px] py-4 ml-[100px] rounded-[80px] overflow-hidden
+        <div className="w-full flex  text-black">
+            <div className="relative  w-[480px] px-[42px] py-8 ml-[100px] rounded-[80px] overflow-hidden
      bg-white/10 border border-white/20 shadow-xl backdrop-blur-lg">
                 <div className="absolute -top-4 left-0">
                     <img className="w-[100px]" src="/images/oceans/bull-left-1.png" alt=""/>
