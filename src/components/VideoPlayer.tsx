@@ -309,21 +309,26 @@ export default function VideoPlayer() {
         }
     };
 
+    if (!hasUserInteracted) {
+        return (
+            <div className="fixed inset-0 bg-black z-50">
+                {!hasUserInteracted && (
+                    <div className="flex items-center justify-center h-full flex-col gap-4">
+                        <div className="text-white text-lg">Loading...</div>
+                        <div className="w-64 h-2 bg-gray-700 rounded-full">
+                            <div
+                                className="h-full bg-white rounded-full transition-all duration-300"
+                                style={{ width: `${loadingProgress}%` }}
+                            />
+                        </div>
+                    </div>
+                )}
+            </div>
+        )
+    }
 
     return (
         <div className="fixed inset-0 bg-black z-50">
-            {!hasUserInteracted && (
-                <div className="flex items-center justify-center h-full flex-col gap-4">
-                    <div className="text-white text-lg">Loading...</div>
-                    <div className="w-64 h-2 bg-gray-700 rounded-full">
-                        <div
-                            className="h-full bg-white rounded-full transition-all duration-300"
-                            style={{ width: `${loadingProgress}%` }}
-                        />
-                    </div>
-                </div>
-            )}
-
             <div className="w-full h-full relative">
                 <video
                     ref={videoRef}
