@@ -314,21 +314,13 @@ export default function VideoPlayer() {
         <div className="fixed inset-0 bg-black z-50">
             {!hasUserInteracted && (
                 <div className="flex items-center justify-center h-full flex-col gap-4">
-                    <div className="text-white text-lg">Chargement...</div>
+                    <div className="text-white text-lg">Loading...</div>
                     <div className="w-64 h-2 bg-gray-700 rounded-full">
                         <div
                             className="h-full bg-white rounded-full transition-all duration-300"
                             style={{ width: `${loadingProgress}%` }}
                         />
                     </div>
-                    <button
-                        id="starter"
-                        disabled={loadingProgress<100}
-                        onClick={handleUserStart}
-                        className="mt-4 text-white px-4 py-2 bg-blue-600 rounded-full"
-                    >
-                        Start
-                    </button>
                 </div>
             )}
 
