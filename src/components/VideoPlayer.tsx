@@ -28,7 +28,6 @@ export default function VideoPlayer() {
     const interactionStartRef = useRef<number>(0);
     const interactionFrameRef = useRef<number | null>(null);
 
-    console.log(videoRef?.current?.duration);
 
     // Calculate total duration from actual video durations
     const totalDuration = videoDurations.reduce((acc, duration) => acc + duration, 0);
@@ -186,7 +185,7 @@ export default function VideoPlayer() {
 
         return () => clearInterval(interval);
     }, [currentVideo, displayedTimecodes, videoRef?.current]);
-    
+
 
     useEffect(() => {
         if (

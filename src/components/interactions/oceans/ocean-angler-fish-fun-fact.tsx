@@ -1,6 +1,6 @@
 import OceanFunFact from "@/components/interactions/oceans/ocean-fun-fact";
 
-export default function OceanAnglerFishSwim() {
+export default function OceanAnglerFishFunFact() {
     return (
         <>
             <OceanFunFact

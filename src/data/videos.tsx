@@ -4,7 +4,7 @@ import OceanExpert1 from "@/components/interactions/oceans/ocean-expert-1";
 import OceanBarrelEyeFish from "@/components/interactions/oceans/ocean-barrel-eye-fish";
 import OceanBarrelEyeFishFunFact from "@/components/interactions/oceans/ocean-barrel-eye-fish-fun-fact";
 import OceanAnglerFish from "@/components/interactions/oceans/ocean-angler-fish";
-import OceanAnglerFishSwim from "@/components/interactions/oceans/ocean-angler-fish-swim";
+import OceanAnglerFishFunFact from "@/components/interactions/oceans/ocean-angler-fish-fun-fact";
 import KnowledgeCheckQuizAnglerFish from "@/components/interactions/oceans/knowledge-check-quiz-angler-fish";
 import OceanJapaneseSpiderCrab from "@/components/interactions/oceans/ocean-japanese-spider-crab";
 import OceanJapaneseSpiderFunFact from "@/components/interactions/oceans/ocean-japanese-spider-fun-fact";
@@ -32,19 +32,6 @@ export type InteractionComponentProps = {
  */
 
 export const videos = [
-    {
-        id: 5,
-        src: "/videos/ocean/Frame05.mp4",
-        interactions: [
-            {
-                timecode: 1,
-                duration: 5,
-                blocking: true,
-                component: () => <OceanBarrelEyeFishFunFact/>,
-            },
-            //Manque une interaction pour la barreleye fish
-        ],
-    },
     {
         id: 1,
         src: "/videos/ocean/Frame01.mp4",
@@ -104,11 +91,10 @@ export const videos = [
         interactions: [
             {
                 timecode: 1,
-                duration: 50,
+                duration: 29.89754,
                 blocking: false,
                 component: () => <OceanBarrelEyeFishFunFact/>,
             },
-            //Manque une interaction pour la barreleye fish
         ],
     },
     {
@@ -128,17 +114,11 @@ export const videos = [
         src: "/videos/ocean/Frame07.mp4",
         interactions: [
             {
-                timecode: 0,
+                timecode: 1,
                 duration: 15,
                 blocking: false,
                 blockingBg: false,
-                component: () => <OceanAnglerFishSwim />,
-            },
-            {
-                timecode: 28.9,
-                duration: null,
-                blocking: true,
-                component: (props: InteractionComponentProps) => <KnowledgeCheckQuizAnglerFish {...props} />,
+                component: () => <OceanAnglerFishFunFact />,
             },
         ],
     },
@@ -147,10 +127,10 @@ export const videos = [
         src: "/videos/ocean/Frame08.mp4",
         interactions: [
             {
-                timecode: 0,
-                duration: 50,
-                blocking: false,
-                component: () => <OceanJapaneseSpiderCrab/>,
+                timecode: 1,
+                duration: null,
+                blocking: true,
+                component: (props: InteractionComponentProps) => <KnowledgeCheckQuizAnglerFish {...props} />,
             },
         ],
     },
@@ -159,13 +139,31 @@ export const videos = [
         src: "/videos/ocean/Frame09.mp4",
         interactions: [
             {
-                timecode: 0,
+                timecode: 1,
+                duration: 50,
+                blocking: false,
+                component: () => <OceanJapaneseSpiderCrab/>,
+            },
+        ],
+    },
+    {
+        id: 10,
+        src: "/videos/ocean/Frame10.mp4",
+        interactions: [
+            {
+                timecode: 1,
                 duration: 15,
                 blocking: false,
                 component: () => <OceanJapaneseSpiderFunFact/>,
             },
+        ],
+    },
+    {
+        id: 11,
+        src: "/videos/ocean/Frame11.mp4",
+        interactions: [
             {
-                timecode: 22,
+                timecode: 0,
                 duration: null,
                 blocking: true,
                 canGoNext: true,
@@ -174,8 +172,8 @@ export const videos = [
         ],
     },
     {
-        id: 10,
-        src: "/videos/ocean/Frame10.mp4",
+        id: 12,
+        src: "/videos/ocean/Frame12.mp4",
         interactions: [
             {
                 timecode: 0,
@@ -192,7 +190,7 @@ export const videos = [
         ],
     },
     {
-        id: 11,
+        id: 13,
         src: "/videos/ocean/Frame14.mp4",
         interactions: [
             {
@@ -206,7 +204,7 @@ export const videos = [
         ],
     },
     {
-        id: 12,
+        id: 14,
         src: "/videos/ocean/Frame08.mp4",
         interactions: [
             {
