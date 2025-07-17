@@ -28,6 +28,8 @@ export default function VideoPlayer() {
     const interactionStartRef = useRef<number>(0);
     const interactionFrameRef = useRef<number | null>(null);
 
+    console.log(videoRef?.current?.duration);
+
     // Calculate total duration from actual video durations
     const totalDuration = videoDurations.reduce((acc, duration) => acc + duration, 0);
 
@@ -184,17 +186,20 @@ export default function VideoPlayer() {
 
         return () => clearInterval(interval);
     }, [currentVideo, displayedTimecodes, videoRef?.current]);
+    
 
     useEffect(() => {
-        if (currentInteraction?.state === 'preview' && currentInteraction?.previewDuration > 0 && Number(videoRef?.current?.currentTime??0).toFixed(3) === Number(currentInteraction?.previewDuration??0).toFixed(3) && videoRef?.current) {
-            videoRef?.current?.pause()
-            // eslint-disable-next-line
-            setCurrentInteraction((prev: any) => {
-                return {
-                    ...prev,
-                    state: "blocking"
-                }
-            })
+        if (
+            currentInteraction?.state === 'preview' &&
+            currentInteraction?.previewDuration > 0 &&
+            videoRef?.current?.currentTime &&
+            Math.abs(videoRef.current.currentTime - currentInteraction.previewDuration) < 0.2
+        ) {
+            videoRef.current.pause();
+            setCurrentInteraction((prev: any) => ({
+                ...prev,
+                state: "blocking"
+            }));
         }
     }, [videoRef?.current?.currentTime]);
 

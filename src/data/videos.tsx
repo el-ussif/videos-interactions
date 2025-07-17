@@ -2,7 +2,7 @@ import OceanObjective from "@/components/interactions/oceans/ocean-objective";
 import OceanStarter from "@/components/interactions/oceans/ocean-starter";
 import OceanExpert1 from "@/components/interactions/oceans/ocean-expert-1";
 import OceanBarrelEyeFish from "@/components/interactions/oceans/ocean-barrel-eye-fish";
-import OceanBarrelEyeFishSwim from "@/components/interactions/oceans/ocean-barrel-eye-fish-swim";
+import OceanBarrelEyeFishFunFact from "@/components/interactions/oceans/ocean-barrel-eye-fish-fun-fact";
 import OceanAnglerFish from "@/components/interactions/oceans/ocean-angler-fish";
 import OceanAnglerFishSwim from "@/components/interactions/oceans/ocean-angler-fish-swim";
 import KnowledgeCheckQuizAnglerFish from "@/components/interactions/oceans/knowledge-check-quiz-angler-fish";
@@ -33,36 +33,28 @@ export type InteractionComponentProps = {
 
 export const videos = [
     {
+        id: 5,
+        src: "/videos/ocean/Frame05.mp4",
+        interactions: [
+            {
+                timecode: 1,
+                duration: 5,
+                blocking: true,
+                component: () => <OceanBarrelEyeFishFunFact/>,
+            },
+            //Manque une interaction pour la barreleye fish
+        ],
+    },
+    {
         id: 1,
         src: "/videos/ocean/Frame01.mp4",
         interactions: [
             {
                 timecode: 1,
-                duration: 10,
+                duration: 7,
                 blocking: false,
                 component: (props: InteractionComponentProps) => <OceanObjective {...props} />,
             },
-            /*
-            {
-                id: 3,
-                src: "/videos/ocean/Frame03.mp4",
-                interactions: [
-                    {
-                        timecode: 1,
-                        duration: 7,
-                        previewDuration: 5,
-                        blocking: true,
-                        component: (props: InteractionComponentProps) => <OceanExpert1 {...props} />,
-                    },
-                ],
-            },
-            {
-                timecode: 10,
-                duration: 5,
-                blocking: false,
-                component: (props: InteractionComponentProps) => <OceanObjective {...props} />,
-            },
-            */
         ],
     },
     {
@@ -84,7 +76,7 @@ export const videos = [
         src: "/videos/ocean/Frame03.mp4",
         interactions: [
             {
-                timecode: 0,
+                timecode: 1,
                 previewDuration: 16.17800,
                 duration: Infinity,
                 canGoNext: true,
@@ -99,7 +91,7 @@ export const videos = [
         src: "/videos/ocean/Frame04.mp4",
         interactions: [
             {
-                timecode: 0,
+                timecode: 1,
                 duration: Infinity,
                 blocking: false,
                 component: () => <OceanBarrelEyeFish />,
@@ -111,11 +103,12 @@ export const videos = [
         src: "/videos/ocean/Frame05.mp4",
         interactions: [
             {
-                timecode: 0,
+                timecode: 1,
                 duration: 50,
                 blocking: false,
-                component: () => <OceanBarrelEyeFishSwim/>,
+                component: () => <OceanBarrelEyeFishFunFact/>,
             },
+            //Manque une interaction pour la barreleye fish
         ],
     },
     {
@@ -123,7 +116,7 @@ export const videos = [
         src: "/videos/ocean/Frame06.mp4",
         interactions: [
             {
-                timecode: 0,
+                timecode: 1,
                 duration: 50,
                 blocking: false,
                 component: () => <OceanAnglerFish/>,
@@ -203,8 +196,8 @@ export const videos = [
         src: "/videos/ocean/Frame14.mp4",
         interactions: [
             {
-                timecode: 0,
-                previewDuration: 16,
+                timecode: 1,
+                previewDuration: 17.70,
                 duration: null,
                 canGoNext: true,
                 blocking: true,

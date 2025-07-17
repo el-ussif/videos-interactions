@@ -1,29 +1,29 @@
+import {cn} from "@/lib/utils";
 
 interface OceanFunFactProps {
     title: string
     description?: string
     fishName?: string
+    imageClassName?: string
     image: string
 }
 
-export default function OceanFunFact({title, fishName, image, description}: OceanFunFactProps) {
+export default function OceanFunFact({title, fishName, image, description, imageClassName}: OceanFunFactProps) {
     return (
         <>
             <div className="items-center w-full flex text-black">
-                <div className="max- w-[540px] px-[50px] py-10 ml-[100px] rounded-[80px] overflow-hidden
-     bg-green-1 border border-white/20 shadow-xl">
+                <div className="max- w-[490px] px-[50px] py-10 ml-[100px] rounded-[70px] overflow-hidden
+     bg-green-1/75 border border-white/20 shadow-xl">
                     <div className="text-white text-center space-y-6">
-                        <h1 className="font-bold text-8xl">
+                        <h1 className="font-bold text-7xl">
                             {title}
                         </h1>
                         <div className="relative">
-                            <div className="mx-auto ">
+                            <div className="mx-auto flex justify-center items-center ">
                                 <img
                                     src={image}
                                     alt="Fun fact!"
-                                    width={430}
-                                    height={250}
-                                    className="w-[430px] rounded-xl h-[250px] object-cover"
+                                    className={cn('w-[430px] rounded-xl h-[250px] object-cover', imageClassName)}
                                 />
                             </div>
                         </div>
@@ -43,8 +43,6 @@ export default function OceanFunFact({title, fishName, image, description}: Ocea
                     </div>
                 </div>
             </div>
-
-
         </>
     );
 }

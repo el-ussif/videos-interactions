@@ -32,7 +32,7 @@ export default function OceanStopper({ disabled = false, onComplete }: { onCompl
                             <p className="text-slate-700">
                                 Keep researching on your own. <br/>
                                 <strong className="font-bold text-2xl">
-                                    You never know what you’ll find!
+                                    {"You never know what you’ll find!"}
                                 </strong>
 
                             </p>
