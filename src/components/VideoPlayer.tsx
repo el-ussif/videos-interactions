@@ -195,6 +195,7 @@ export default function VideoPlayer() {
             Math.abs(videoRef.current.currentTime - currentInteraction.previewDuration) < 0.2
         ) {
             videoRef.current.pause();
+            //eslint-disable-next-line
             setCurrentInteraction((prev: any) => ({
                 ...prev,
                 state: "blocking"

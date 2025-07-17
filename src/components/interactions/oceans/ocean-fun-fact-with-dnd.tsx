@@ -9,6 +9,7 @@ interface OceanFunFactProps {
     fishName?: string;
     imageClassName?: string;
     image: string;
+    //eslint-disable-next-line
     imageRef?: any;
     dragAndDropEnd?: VoidFunction
 }
@@ -25,6 +26,7 @@ export default function OceanFunFactWithDnd({
     const controls = useAnimation();
     const [, setIsDropped] = useState(false);
 
+    //eslint-disable-next-line
     const [, dropRef]: any = useDrop(() => ({
         accept: "FISH_DROP",
         drop: () => {
@@ -49,7 +51,7 @@ export default function OceanFunFactWithDnd({
                     <div className="relative">
                         <div
                             className="mx-auto flex justify-center items-center"
-                            ref={(el:any) => {
+                            ref={(el) => {
                                 dropRef(el);
                                 if (imageRef?.current) imageRef.current = el;
                             }}

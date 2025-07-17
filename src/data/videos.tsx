@@ -167,6 +167,7 @@ export const videos = [
                 duration: null,
                 blocking: true,
                 canGoNext: true,
+                muted: true,
                 component: (props: InteractionComponentProps) => <KnowledgeCheckQuizJapaneseSpiderCrab {...props} />,
             },
         ],

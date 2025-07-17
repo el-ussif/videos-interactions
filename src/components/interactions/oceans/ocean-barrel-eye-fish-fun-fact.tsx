@@ -7,6 +7,7 @@ import {useState} from "react";
 import OceanFunFactWithDnd from "@/components/interactions/oceans/ocean-fun-fact-with-dnd";
 
 function DragSource() {
+    //eslint-disable-next-line
     const [{ isDragging }, dragRef]:any = useDrag(() => ({
         type: "FISH_DROP",
         collect: (monitor) => ({
