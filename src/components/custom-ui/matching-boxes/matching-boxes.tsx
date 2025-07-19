@@ -33,6 +33,7 @@ interface MatchingBoxesProps {
 }
 
 export default function MatchingBoxes({items, onSubmitted, disabled}: MatchingBoxesProps) {
+    const [submitted, setSubmitted] = useState(false)
     const generateLabelItems = useCallback(() => {
         const labels = items.map((item) => item.correctLabel);
         return labels.map((label) => ({
@@ -102,6 +103,7 @@ export default function MatchingBoxes({items, onSubmitted, disabled}: MatchingBo
             isCorrect: correctCount===3
         }
         onSubmitted(data)
+        setSubmitted(true)
     };
 
     const correctCount = items.filter(
@@ -141,7 +143,7 @@ export default function MatchingBoxes({items, onSubmitted, disabled}: MatchingBo
                 <div className="mt-4 flex justify-center gap-4">
                     <Button
                         onClick={handleValidate}
-                        disabled={!!availableLabels.length || disabled}
+                        disabled={!!availableLabels.length || disabled || submitted}
                         className=""
                     >
                         Continue
