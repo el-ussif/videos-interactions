@@ -2,8 +2,8 @@ import {Button} from "@/components/ui/button";
 
 export default function OceanStopper({ disabled = false, onComplete }: { onComplete?: () => void, disabled?: boolean }) {
     return (
-        <div className="items-center w-full flex  justify-end text-black">
-            <div className="max-w-[600px] px-[50px] mr-[100px] rounded-[80px] overflow-hidden
+        <div className="items-center  w-full max-w-6x flex  justify-end text-black">
+            <div className="max-w-[600px] w-[530px] px-[50px] mr-[100px] rounded-[80px] overflow-hidden
      bg-white/30 border border-white/50 shadow-xl backdrop-blur-lg">
                 <div className="py-16 text-center space-y-6">
                     <div className="relative">

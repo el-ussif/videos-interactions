@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { videos } from "@/data/videos";
+import { videos as VideosData } from "@/data/videos";
 import { Play, VolumeX, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import useTokenStore from "@/store/token-store";
 import { useInteractionTimerStore } from "@/store/interaction-timer-store";
 
 export default function VideoPlayer() {
+    const videoData = VideosData[0]
+    const videos = videoData?.items;
     const videoRef = useRef<HTMLVideoElement>(null);
     const [videoIndex, setVideoIndex] = useState(0);
     // eslint-disable-next-line
@@ -354,7 +356,7 @@ export default function VideoPlayer() {
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.5 }}
                             transition={{ duration: 0.4, ease: "easeOut" }}
-                            className={`absolute inset--0 top-[15%] inset-x-0 flex items-center justify-center z-50 ${currentInteraction.blocking && currentInteraction.blockingBg ? "bg-black/50 pointer-events-auto" : ""}`}
+                            className={`absolute inset-0 flex items-center justify-center z-50 ${currentInteraction.blocking && currentInteraction.blockingBg ? "bg-black/50 pointer-events-auto" : ""}`}
                         >
                             {currentInteraction.component?.({
                                 onComplete: handleInteractionComplete,
@@ -453,7 +455,7 @@ export default function VideoPlayer() {
 
             <audio
                 ref={audioRef}
-                src="/audios/ocean-loop.mp3"
+                src={videoData?.defaultAudio??"/audios/ocean-loops.mp3"}
                 autoPlay={false}
                 loop
                 hidden

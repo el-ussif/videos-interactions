@@ -1,7 +1,9 @@
 "use client"
 
 import QuizForm from "@/components/custom-ui/quiz-form";
-import useTokenStore from "@/store/token-store";
+import {useEffect, useState} from "react";
+import {playAudio} from "@/lib/utils";
+import useQuizAudioHandler from "@/hooks/use-quiz-audio-handler";
 
 const fishQuizData = {
     id: "football-fish",
@@ -17,17 +19,29 @@ const fishQuizData = {
     type: "single" as const,
 }
 
+
+const audioPaths = {
+    intro: "/audios/ocean/frame-13-intro.wav",
+    question: "/audios/ocean/frame-13-question.wav",
+    correct: "/audios/ocean/frame-13-correct-answer.wav",
+    incorrect: "/audios/ocean/frame-13-incorrect-answer.wav",
+}
+
 export default function KnowledgeCheckBarrelEye({ onComplete }: { onComplete?: () => void }) {
-    const {addToken} = useTokenStore()
-    //eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleQuizSubmit = (result: any) => {
-        console.log(`Points earned: ${result.pointsEarned}/${result.totalPoints}`)
-        console.log(`Answer ${result.isCorrect ? "correct" : "incorrect"}`)
-        addToken(result?.pointsEarned)
-        if (onComplete) {
-            onComplete()
+    const [isReady, setIsReady] = useState(false)
+    const handleQuizSubmit = useQuizAudioHandler(audioPaths, onComplete)
+
+    useEffect(() => {
+        const playIntroAndQuestion = async () => {
+            await playAudio(audioPaths.intro)
+            setTimeout(async () => {
+                await playAudio(audioPaths.question)
+
+                setIsReady(true)
+            }, 1000)
         }
-    }
+        playIntroAndQuestion()
+    }, [])
 
     return (
         <div className="items-center w-full flex  justify-center text-black">
@@ -59,6 +73,7 @@ export default function KnowledgeCheckBarrelEye({ onComplete }: { onComplete?: (
                             itemsPerRow={2}
                             onSubmit={handleQuizSubmit}
                             buttonClassName="w-full md:w-[350px] mt-2"
+                            disabled={!isReady}
                         />
                     </div>
                 </div>

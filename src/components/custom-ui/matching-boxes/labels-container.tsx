@@ -1,7 +1,9 @@
+"use client"
 import { useDrop } from "react-dnd";
 import clsx from "clsx";
 import {DragItem, ItemTypes} from "@/components/custom-ui/matching-boxes/matching-boxes";
 import DraggableLabel from "@/components/custom-ui/matching-boxes/draggable-label";
+import {useMemo} from "react";
 
 function LabelsContainer({ labels, onReturn }: {
     labels: DragItem[];
@@ -18,15 +20,19 @@ function LabelsContainer({ labels, onReturn }: {
         }),
     }));
 
-    // 1. Remove duplicates
-    const uniqueLabels = [...new Map(labels.map(item => [item.id, item])).values()];
+    //Shuffle using Fisher-Yates algorithm
+    const shuffledLabels = useMemo(() => {
+        // 1. Remove duplicates
+        const uniqueLabels = [...new Map(labels.map(item => [item.id, item])).values()];
 
-    // 2. Shuffle using Fisher-Yates algorithm
-    const shuffledLabels = [...uniqueLabels];
-    for (let i = shuffledLabels.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledLabels[i], shuffledLabels[j]] = [shuffledLabels[j], shuffledLabels[i]];
-    }
+        // 2. Shuffle using Fisher-Yates algorithm
+        const shuffled = [...uniqueLabels];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    }, [labels]);
 
     return (
         <div

@@ -23,6 +23,7 @@ interface QuizFormProps {
     onReset?: () => void
     className?: string
     buttonClassName?: string
+    disabled?: boolean
 }
 
 interface QuizResult {
@@ -39,6 +40,7 @@ export default function QuizForm({
                                      onSubmit,
                                      className = "",
                                      buttonClassName = "",
+                                     disabled =false
                                  }: QuizFormProps) {
     const [selectedAnswers, setSelectedAnswers] = useState<number[]>([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
@@ -92,10 +94,6 @@ export default function QuizForm({
         }
     }
 
-    const getInputType = () => {
-        return question.type === "single" ? "radio" : "checkbox"
-    }
-
     return (
         <div className={` ${className}`}>
             <div className={`flex flex-col items-center gap-8`}>
@@ -109,29 +107,11 @@ export default function QuizForm({
                                     onClick={() => handleAnswerChange(index)}
                                     className="hover:cursor-pointer"
                                 >
-                                    <input
-                                        type={getInputType()}
-                                        name={question.type === "single" ? "quiz-answer" : `quiz-answer-${index}`}
-                                        value={index}
-                                        checked={selectedAnswers.includes(index)}
-                                        disabled={hasSubmitted}
-                                        className="sr-only"
-                                    />
                                     <span
                                         className="text-lg font-medium  hover:cursor-pointer  flex-1"
                                         onClick={() => handleAnswerChange(index)}
                                     >
                                         {option}
-                                        {
-                                            hasSubmitted && question.correctAnswers.includes(index) && (
-                                                <span className="ml-2 text-green-300">✓</span>
-                                            )
-                                        }
-                                        {
-                                            hasSubmitted &&
-                                            selectedAnswers.includes(index) &&
-                                            !question.correctAnswers.includes(index) && <span className="ml-2 text-red-300">✗</span>
-                                        }
                                     </span>
                                 </label>
                             </div>
@@ -149,7 +129,7 @@ export default function QuizForm({
                     <div className="mt-8 flex justify-center gap-4">
                         <Button
                             onClick={handleSubmit}
-                            disabled={selectedAnswers.length === 0 || hasSubmitted}
+                            disabled={selectedAnswers.length === 0 || hasSubmitted || disabled}
                             className={cn(``, buttonClassName)}
                         >
                             {hasSubmitted ? "Submitted" : "Submit"}

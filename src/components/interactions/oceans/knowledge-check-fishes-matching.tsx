@@ -1,9 +1,17 @@
 "use client"
 
 import MatchingBoxes from "@/components/custom-ui/matching-boxes/matching-boxes";
-import React from "react";
-import useTokenStore from "@/store/token-store";
+import React, {useEffect, useState} from "react";
+import {playAudio} from "@/lib/utils";
+import useQuizAudioHandler from "@/hooks/use-quiz-audio-handler";
 
+
+const audioPaths = {
+    intro: "/audios/ocean/frame-12-intro.wav",
+    question: "/audios/ocean/frame-12-question.wav",
+    correct: "/audios/ocean/frame-12-correct-answer.wav",
+    incorrect: "/audios/ocean/frame-12-incorrect-answer.wav",
+}
 
 export default function KnowledgeCheckFishesMatching({ onComplete }: { onComplete?: () => void }) {
     const data = [
@@ -11,19 +19,21 @@ export default function KnowledgeCheckFishesMatching({ onComplete }: { onComplet
         { id: '2', visual: '/images/oceans/japanese-spider-crab-2.png', correctLabel: 'Japanese Spider Crab' },
         { id: '3', visual: '/images/oceans/barrel-eye-fish-2.png', correctLabel: 'Barreleye Fish' },
     ];
-    const {addToken} = useTokenStore()
-    const rate = 10
+    const handleMatchingBoxSubmit = useQuizAudioHandler(audioPaths, onComplete)
+    const [isReady, setIsReady] = useState(false)
 
-    const handleMatchingBoxSubmit = (result: {
-        correctCount: number,
-        total: number,
-    }) => {
-        console.log(`Points earned: ${result.correctCount}/${result.total}`)
-        addToken(result.correctCount * rate)
-        if (onComplete) {
-            onComplete()
+    useEffect(() => {
+        const playIntroAndQuestion = async () => {
+            await playAudio(audioPaths.intro)
+            setTimeout(async () => {
+                await playAudio(audioPaths.question)
+
+                setIsReady(true)
+            }, 1000)
         }
-    }
+        playIntroAndQuestion()
+    }, [])
+
 
     return (
         <div className="items-center w-full max-w-[1140px] flex  justify-center text-black">
@@ -40,6 +50,7 @@ export default function KnowledgeCheckFishesMatching({ onComplete }: { onComplet
                     <MatchingBoxes
                         items={data}
                         onSubmitted={handleMatchingBoxSubmit}
+                        disabled={!isReady}
                     />
                 </div>
             </div>

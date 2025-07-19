@@ -4,19 +4,19 @@ import {Button} from "@/components/ui/button";
 
 export default function OceanStarter({ onComplete }: { onComplete?: () => void }) {
     return (
-        <div className="relative w-full max-w-5xl mx-auto">
+        <div className="relative w-full max-w-6xl mx-auto">
             {/* Ocean gradient background */}
             <div className="bg-white/30 border border-white/50 shadow-xl backdrop-blur-lg border-white/50 border rounded-[80px] xl py-20 text-white text-center shadow-3xl">
                 {/* Title */}
-                <h1 className="text-5xl font-bold mb-12 text-white">Objective</h1>
+                <h1 className="text-6xl font-bold mb-12 text-white">Objective</h1>
 
                 {/* Description */}
                 <div className="mb-16 space-y-2">
-                    <p className="text-xl font-medium">
+                    <p className="text-2xl font-medium">
                         Identify <span className="font-bold">three</span> fish species that live in the depths of{" "}
                         <span className="font-bold">our oceans</span>.
                     </p>
-                    <p className="text-lg opacity-90">Can you discover the name of each fish?</p>
+                    <p className="text-2xl opacity-90">Can you discover the name of each fish?</p>
                 </div>
 
                 {/* Fish illustrations */}

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React, {useCallback, useState} from 'react';
 import {DndProvider} from 'react-dnd';
 import {HTML5Backend} from 'react-dnd-html5-backend';
@@ -6,6 +6,7 @@ import {v4 as uuidv4} from 'uuid';
 import {Button} from "@/components/ui/button";
 import LabelsContainer from "@/components/custom-ui/matching-boxes/labels-container";
 import DropTarget from "@/components/custom-ui/matching-boxes/drop-target";
+import {QuizResult} from "@/types/quiz";
 
 export const ItemTypes = {
     LABEL: 'LABEL',
@@ -24,18 +25,14 @@ export type DragItem = {
 };
 
 
-export interface MatchingBoxResultProps {
-    correctCount: number,
-    total: number,
-}
-
 interface MatchingBoxesProps {
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
     items: any[],
-    onSubmitted: (data: MatchingBoxResultProps) => void
+    disabled?: boolean,
+    onSubmitted: (data: QuizResult) => void
 }
 
-export default function MatchingBoxes({items, onSubmitted}: MatchingBoxesProps) {
+export default function MatchingBoxes({items, onSubmitted, disabled}: MatchingBoxesProps) {
     const generateLabelItems = useCallback(() => {
         const labels = items.map((item) => item.correctLabel);
         return labels.map((label) => ({
@@ -99,9 +96,10 @@ export default function MatchingBoxes({items, onSubmitted}: MatchingBoxesProps) 
 
     const handleValidate = () => {
         setShowResult(true);
-        const data: MatchingBoxResultProps = {
-            correctCount,
-            total: items?.length
+        const data: QuizResult = {
+            pointsEarned: correctCount*10,
+            totalPoints: 3*10,
+            isCorrect: correctCount===3
         }
         onSubmitted(data)
     };
@@ -143,7 +141,7 @@ export default function MatchingBoxes({items, onSubmitted}: MatchingBoxesProps) 
                 <div className="mt-4 flex justify-center gap-4">
                     <Button
                         onClick={handleValidate}
-                        disabled={!!availableLabels.length}
+                        disabled={!!availableLabels.length || disabled}
                         className=""
                     >
                         Continue
