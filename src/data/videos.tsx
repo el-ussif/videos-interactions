@@ -38,6 +38,7 @@ export const videos = [
             {
                 id: 0.5,
                 src: "/videos/ocean/Frame01.mp4",
+                volume: 0.5,
                 interactions: [
                     {
                         timecode: 1,
@@ -49,6 +50,7 @@ export const videos = [
             },
             {
                 id: 2,
+                volume: 1,
                 src: "/videos/ocean/Frame02.mp4",
                 interactions: [
                     {
@@ -64,6 +66,7 @@ export const videos = [
             {
                 id: 3,
                 src: "/videos/ocean/Frame03.mp4",
+                volume: 0.3,
                 interactions: [
                     {
                         timecode: 1,
@@ -79,6 +82,7 @@ export const videos = [
             {
                 id: 4,
                 src: "/videos/ocean/Frame04.mp4",
+                volume: 0.3,
                 interactions: [
                     {
                         timecode: 1,
@@ -91,6 +95,7 @@ export const videos = [
             {
                 id: 5,
                 src: "/videos/ocean/Frame05.mp4",
+                volume: 0.3,
                 interactions: [
                     {
                         timecode: 1,
@@ -103,6 +108,7 @@ export const videos = [
             {
                 id: 6,
                 src: "/videos/ocean/Frame06.mp4",
+                volume: 0.3,
                 interactions: [
                     {
                         timecode: 1,
@@ -128,6 +134,7 @@ export const videos = [
             {
                 id: 8,
                 src: "/videos/ocean/Frame08.mp4",
+                volume: 0.5,
                 interactions: [
                     {
                         timecode: 1,
@@ -148,6 +155,7 @@ export const videos = [
             {
                 id: 9,
                 src: "/videos/ocean/Frame09.mp4",
+                volume: 0.3,
                 interactions: [
                     {
                         timecode: 1,
@@ -160,6 +168,7 @@ export const videos = [
             {
                 id: 10,
                 src: "/videos/ocean/Frame10.mp4",
+                volume: 0.3,
                 interactions: [
                     {
                         timecode: 1,
@@ -172,6 +181,7 @@ export const videos = [
             {
                 id: 11,
                 src: "/videos/ocean/Frame11.mp4",
+                volume: 0.5,
                 interactions: [
                     {
                         timecode: 1,
@@ -192,6 +202,7 @@ export const videos = [
             {
                 id: 12,
                 src: "/videos/ocean/Frame12.mp4",
+                volume: 0.5,
                 interactions: [
                     {
                         timecode: 1,
@@ -212,6 +223,7 @@ export const videos = [
             {
                 id: 13,
                 src: "/videos/ocean/Frame13.mp4",
+                volume: 0.5,
                 interactions: [
 
                     {
@@ -233,6 +245,7 @@ export const videos = [
             {
                 id: 14,
                 src: "/videos/ocean/Frame14.mp4",
+                volume: 0.5,
                 interactions: [
                     {
                         timecode: 1,
@@ -247,6 +260,7 @@ export const videos = [
             {
                 id: 15,
                 src: "/videos/ocean/Frame08.mp4",
+                volume: 0.90,
                 interactions: [
                     {
                         timecode: 1,

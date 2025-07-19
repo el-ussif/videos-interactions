@@ -132,6 +132,7 @@ export default function VideoPlayer() {
             videoRef.current!.load();
             try {
                 await videoRef.current!.play();
+                await audioRef.current?.play();
             } catch (e) {
                 console.warn("Autoplay failed", e);
             }
@@ -188,6 +189,24 @@ export default function VideoPlayer() {
         return () => clearInterval(interval);
     }, [currentVideo, displayedTimecodes, videoRef?.current]);
 
+    useEffect(() => {
+        const audio = audioRef.current;
+        if (!audio) return;
+
+        let newVolume: number | undefined;
+
+        if (currentInteraction?.volume) {
+            newVolume = currentInteraction.volume;
+        } else if (currentVideo?.volume) {
+            newVolume = Number(currentVideo?.volume??0.7);
+        }
+
+        if (newVolume !== undefined) {
+            audio.volume = Math.max(0, Math.min(1, newVolume)); // clamp between 0 and 1
+        } else {
+            audio.volume = 0.1; // volume par défaut si rien de défini
+        }
+    }, [videoIndex, currentInteraction]);
 
     useEffect(() => {
         if (
@@ -222,6 +241,7 @@ export default function VideoPlayer() {
         };
         interactionFrameRef.current = requestAnimationFrame(step);
     };
+
 
     useEffect(() => {
         return () => {
