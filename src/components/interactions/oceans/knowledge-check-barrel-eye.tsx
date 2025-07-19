@@ -33,12 +33,12 @@ export default function KnowledgeCheckBarrelEye({ onComplete }: { onComplete?: (
 
     useEffect(() => {
         const playIntroAndQuestion = async () => {
-            await playAudio(audioPaths.intro)
+            //await playAudio(audioPaths.intro)
             setTimeout(async () => {
                 await playAudio(audioPaths.question)
 
                 setIsReady(true)
-            }, 1000)
+            }, 100)
         }
         playIntroAndQuestion()
     }, [])
