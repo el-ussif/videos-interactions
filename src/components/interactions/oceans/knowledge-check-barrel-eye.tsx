@@ -14,8 +14,8 @@ const fishQuizData = {
         "Directly by ocean temps",
         "Directly by youth death"
     ],
-    correctAnswers: [0],
-    points: 10,
+    correctAnswers: [1],
+    points: 30,
     type: "single" as const,
 }
 

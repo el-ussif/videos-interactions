@@ -19,22 +19,30 @@ export type InteractionComponentProps = {
     onComplete?: VoidFunction;
 };
 
-/*
-{
-                timecode: 0.1,
-                previewDuration: 15.5,
-                duration: Infinity,
-                canGoNext: false,
-                blocking: true,
-                blockingBg: false,
-                component: (props: InteractionComponentProps) => <OceanExpert1 {...props} />,
-            },
- */
-
 export const videos = [
     {
+        id: 1,
+        slug: "diving",
+        totalToken: 210,
+        tokenCanEarn: 160,
         defaultAudio: '/audios/ocean/bg-music.mp3',
+        coverImage: '/images/oceans/cover-image.png',
+        downloadFile: '/downloads/ocean/diving-into-the-depths-worksheet.pdf',
         items: [
+            {
+                id: 15,
+                src: "/videos/ocean/Frame08.mp4",
+                volume: 0.90,
+                interactions: [
+                    {
+                        timecode: 1,
+                        duration: 10,
+                        blocking: true,
+                        loop: true,
+                        component: () => <PerformanceSummary/>,
+                    },
+                ],
+            },
             {
                 id: 0.5,
                 src: "/videos/ocean/Frame01.mp4",

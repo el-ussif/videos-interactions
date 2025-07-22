@@ -1,18 +1,24 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { videos as VideosData } from "@/data/videos";
-import { Play, VolumeX, X } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
-import useTokenStore from "@/store/token-store";
-import { useInteractionTimerStore } from "@/store/interaction-timer-store";
+import {useEffect, useRef, useState} from "react";
+import {videos as VideosData} from "@/data/videos";
+import {AnimatePresence, motion} from "framer-motion";
+import {useInteractionTimerStore} from "@/store/interaction-timer-store";
+import {useParams} from "next/navigation";
+import VideoLoadingScreen from "@/components/player-drive/video-loading-screen";
+import VideoElement from "@/components/player-drive/video-element";
+import VideoControls from "@/components/player-drive/video-controls";
+import VideoTopBar from "@/components/player-drive/video-top-bar";
 
 export default function VideoPlayer() {
-    const videoData = VideosData[0]
-    const videos = videoData?.items;
+    const { id } = useParams();
+    const currentIndex = VideosData.findIndex((item) => item.slug === id);
+    const videoData = currentIndex !== -1 ? VideosData[currentIndex] : null;
+    const videos = videoData?.items ?? [];
     const videoRef = useRef<HTMLVideoElement>(null);
+    const audioRef = useRef<HTMLAudioElement>(null);
     const [videoIndex, setVideoIndex] = useState(0);
-    // eslint-disable-next-line
+    //eslint-disable-next-line
     const [currentInteraction, setCurrentInteraction] = useState<null | any>(null);
     const [displayedTimecodes, setDisplayedTimecodes] = useState<number[]>([]);
     const [hasUserInteracted, setHasUserInteracted] = useState(false);
@@ -21,15 +27,13 @@ export default function VideoPlayer() {
     const [areVideosReady, setAreVideosReady] = useState(false);
     const [loadingProgress, setLoadingProgress] = useState(0);
     const [videoDurations, setVideoDurations] = useState<number[]>([]);
-    const audioRef = useRef<HTMLAudioElement>(null);
-    const currentVideo = videos[videoIndex];
-    const { token } = useTokenStore();
-    const { startGlobalTimer } = useInteractionTimerStore.getState();
     const videoCache = useRef<Map<string, { blob: Blob; duration: number }>>(new Map());
     const interactionTimeRef = useRef<number>(0);
     const interactionStartRef = useRef<number>(0);
     const interactionFrameRef = useRef<number | null>(null);
 
+    const currentVideo = videos[videoIndex];
+    const { startGlobalTimer } = useInteractionTimerStore.getState();
 
     // Calculate total duration from actual video durations
     const totalDuration = videoDurations.reduce((acc, duration) => acc + duration, 0);
@@ -114,7 +118,7 @@ export default function VideoPlayer() {
 
 
     useEffect(() => {
-        if (!areVideosReady || !hasUserInteracted) return;
+        if (!areVideosReady || !hasUserInteracted || !currentVideo?.src) return;
 
         const playVideo = async () => {
             const cached = videoCache.current.get(currentVideo.src);
@@ -147,7 +151,7 @@ export default function VideoPlayer() {
                 videoRef.current.load();
             }
         };
-    }, [videoIndex, hasUserInteracted, areVideosReady, currentVideo.src]);
+    }, [videoIndex, hasUserInteracted, areVideosReady, currentVideo?.src]);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -338,34 +342,34 @@ export default function VideoPlayer() {
 
     if (!hasUserInteracted) {
         return (
-            <div className="fixed inset-0 bg-black z-50">
-                {!hasUserInteracted && (
-                    <div className="flex items-center justify-center h-full flex-col gap-4">
-                        <div className="text-white text-lg">Loading...</div>
-                        <div className="w-64 h-2 bg-gray-700 rounded-full">
-                            <div
-                                className="h-full bg-white rounded-full transition-all duration-300"
-                                style={{ width: `${loadingProgress}%` }}
-                            />
-                        </div>
-                    </div>
-                )}
-            </div>
+            <VideoLoadingScreen loadingProgress={loadingProgress}/>
         )
+    }
+
+    if (currentIndex === -1) {
+        return (
+            <div className="p-4 text-red-400 text-xl font-semibold text-center">
+                No videos found for the ID <strong>{id}</strong>.
+            </div>
+        );
+    }
+
+    if (!videos || videos.length === 0) {
+        return (
+            <div className="p-4 text-red-400 text-xl font-semibold text-center">
+                This video does not contain any available content.
+            </div>
+        );
     }
 
     return (
         <div className="fixed inset-0 bg-black z-50">
             <div className="w-full h-full relative">
-                <video
-                    ref={videoRef}
-                    key={currentVideo.src}
-                    controls={false}
-                    autoPlay
-                    loop={currentInteraction?.loop??false}
-                    playsInline
-                    muted={false}
-                    className="w-full h-full object-cover"
+                <VideoElement
+                 currentVideoSrc={currentVideo?.src}
+                 loop={currentInteraction?.loop??false}
+                 videoRef={videoRef}
+                 key={currentVideo?.src}
                 />
 
                 <AnimatePresence>
@@ -392,85 +396,26 @@ export default function VideoPlayer() {
                         onMouseEnter={() => setHoverControls(true)}
                         onMouseLeave={() => setHoverControls(false)}
                     >
-                        <AnimatePresence>
-                            {hoverControls && (
-                                <motion.div
-                                    key="controls"
-                                    initial={{ opacity: 0, y: 100 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: 100 }}
-                                    transition={{ duration: 0.3 }}
-                                    className="bg-black/60 text-white"
-                                >
-                                    <div className="w-full h-2 bg-gray-700 rounded mb-3 relative">
-                                        <div
-                                            className="h-full bg-white/60 rounded pointer-events-none"
-                                            style={{ width: `${progress * 100}%` }}
-                                        />
-                                    </div>
-
-                                    <div className="w-full flex justify-between px-6 pb-4 items-center">
-                                        <button
-                                            onClick={togglePlay}
-                                            className={`text-white ${currentInteraction?.blocking ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"} bg-[#DBE2EA]/40 h-[60px] w-[60px] rounded-full items-center justify-center flex transition`}
-                                        >
-                                            {videoRef.current?.paused ? (
-                                                <Play fontWeight="bold" size={32} />
-                                            ) : (
-                                                <img alt="" width={20} height={27} src="/images/pause.png" />
-                                            )}
-                                        </button>
-
-                                        <button
-                                            onClick={() => {
-                                                const video = videoRef.current;
-                                                const audio = audioRef.current;
-                                                if (video) video.muted = !video.muted;
-                                                if (audio) audio.muted = !audio.muted;
-                                            }}
-                                            className="text-white hover:cursor-pointer bg-[#DBE2EA]/40 h-[60px] w-[60px] rounded-full items-center justify-center flex transition"
-                                        >
-                                            {videoRef.current?.muted ? (
-                                                <VolumeX />
-                                            ) : (
-                                                <img src="/images/volume-on.png" alt="" width={32} height={32} />
-                                            )}
-                                        </button>
-                                    </div>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
+                        <VideoControls
+                            blocking={currentInteraction?.blocking}
+                            hoverControls={hoverControls}
+                            isMuted={!!videoRef.current?.muted}
+                            isPaused={!!videoRef.current?.paused}
+                            onMuteToggle={() => {
+                                const video = videoRef.current;
+                                const audio = audioRef.current;
+                                if (video) video.muted = !video.muted;
+                                if (audio) audio.muted = !audio.muted;
+                            }}
+                            onPlayPause={togglePlay}
+                            progress={progress}
+                        />
                     </div>
                 </div>
 
-                <motion.button
-                    onClick={() => alert("On closing app")}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.3 }}
-                    className="fixed top-4 left-4 text-white bg-[#DBE2EA]/40 h-[55px] w-[55px] rounded-full items-center justify-center flex z-50"
-                >
-                    <X />
-                </motion.button>
-
-                <AnimatePresence>
-                    {!hoverControls && (
-                        <motion.button
-                            key="token"
-                            initial={{ opacity: 0, x: 100 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: 100 }}
-                            transition={{ duration: 0.3 }}
-                            className="fixed min-w-[150px] z-100 top-6 right-4 text-white bg-[#DBE2EA]/40 flex rounded-full items-center justify-center"
-                        >
-                            <img className="h-[54px] w-[54px]" src="/images/globe-kin-gem.png" alt="" />
-                            <span className="w-full font-bold text-xl justify-center">
-                                {token}
-                            </span>
-                        </motion.button>
-                    )}
-                </AnimatePresence>
+                <VideoTopBar
+                    showToken={!hoverControls}
+                />
             </div>
 
             <audio

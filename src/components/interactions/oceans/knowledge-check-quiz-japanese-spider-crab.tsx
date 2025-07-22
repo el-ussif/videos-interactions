@@ -14,8 +14,8 @@ const fishQuizData = {
         "Seaweed loss reduces food supply",
         "Temperature changes reduce the amount of mating"
     ],
-    correctAnswers: [0,2],
-    points: 20,
+    correctAnswers: [0,1,2],
+    points: 30,
     type: "multiple" as const,
 }
 

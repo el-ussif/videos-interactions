@@ -9,9 +9,9 @@ const fishQuizData = {
     id: "football-fish",
     question: 'What is the "bulb" on top of a Football Fish\'s head for?',
     options: ["Lighting up the ocean", "Attracting prey", "Defending against predators"],
-    correctAnswers: [1, 2], // Attracting prey, Defending against predators
-    points: 20,
-    type: "multiple" as const,
+    correctAnswers: [1], // Attracting prey
+    points: 30,
+    type: "single" as const,
 }
 
 const audioPaths = {

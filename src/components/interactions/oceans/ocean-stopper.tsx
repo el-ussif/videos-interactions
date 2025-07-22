@@ -1,6 +1,18 @@
 import {Button} from "@/components/ui/button";
+import useTokenStore from "@/store/token-store";
+import {useState} from "react";
 
 export default function OceanStopper({ disabled = false, onComplete }: { onComplete?: () => void, disabled?: boolean }) {
+    const { addToken } = useTokenStore()
+    const [tokenIsAdded, setTokenIsAdded] = useState(false)
+    const getInteractivityToken = () => {
+        if (onComplete) {
+            setTokenIsAdded(true)
+            addToken(30)
+            onComplete()
+        }
+    }
+
     return (
         <div className="items-center  w-full max-w-6x flex  justify-end text-black">
             <div className="max-w-[600px] w-[530px] px-[50px] mr-[100px] rounded-[80px] overflow-hidden
@@ -43,7 +55,8 @@ export default function OceanStopper({ disabled = false, onComplete }: { onCompl
                     {/* CTA Button */}
                     {onComplete && (
                         <Button
-                            onClick={onComplete}
+                            disabled={tokenIsAdded || disabled}
+                            onClick={getInteractivityToken}
                             className={`w-full mt-16 ${
                                 disabled ? "bg-white text-black cursor-not-allowed opacity-60" : ""
                             }`}
