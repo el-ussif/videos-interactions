@@ -11,7 +11,7 @@ export default function OceanExpert1({ onComplete,   disabled = false,
                     <div className="relative">
                         <div className="w-32 h-32 mx-auto rounded-full overflow-hidden">
                             <img
-                                src="/images/oceans/carlos-ramirez.png"
+                                src="/images/oceans/carlos-ramirez-1.png"
                                 alt="Carlos Ramirez"
                                 width={166}
                                 height={166}

@@ -1,9 +1,9 @@
 export default function OceanBarrelEyeFish() {
     return (
-        <div className="items-center w-full flex   text-black">
-            <div className="max-w-[385px] px-[42px] py-12 ml-[100px] rounded-[80px] overflow-hidden
-     bg-white/10 border border-white/20 shadow-xl backdrop-blur-xl">
-                <div className=" text-center space-y-6">
+        <div className="items-center w-full flex text-black">
+            <div className="max-w-[490px] px-[42px] py-12 ml-[100px] rounded-[80px] overflow-hidden
+     bg-white/10 border border-white/20 shadow-xl backdrop-blur-lg">
+                <div className="flex flex-wrap w-full justify-center text-center space-y-6">
                     <div className="relative">
                         <div className=" mx-auto rounded-full ">
                             <img

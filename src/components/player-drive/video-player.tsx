@@ -180,6 +180,9 @@ export default function VideoPlayer() {
             } else if (toTrigger.blocking) {
                 if (!toTrigger.loop) {
                     video.pause();
+                    if (audioRef?.current) {
+                        audioRef.current.volume = 1
+                    }
                 }
                 setCurrentInteraction({ ...toTrigger, state: "blocking" });
             } else {
@@ -220,6 +223,9 @@ export default function VideoPlayer() {
             Math.abs(videoRef.current.currentTime - currentInteraction.previewDuration) < 0.2
         ) {
             videoRef.current.pause();
+            if (audioRef?.current) {
+                audioRef.current.volume = 1
+            }
             //eslint-disable-next-line
             setCurrentInteraction((prev: any) => ({
                 ...prev,
@@ -293,6 +299,39 @@ export default function VideoPlayer() {
         };
     }, [videoIndex, hasUserInteracted, progress, videoDurations, totalDuration]);
 
+
+    const onPausePlay = () => {
+        const video = videoRef.current;
+        const audio = audioRef.current;
+        if (!video || currentInteraction?.blocking) return;
+        if (video.paused) {
+            video.play();
+            audio?.play();
+        } else {
+            video.pause();
+            audio?.pause();
+            if (audio) {
+                audio.volume = 1
+            }
+        }
+    };
+
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.code === "Space") {
+                event.preventDefault(); // Empêche le scroll automatique
+                onPausePlay();
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [onPausePlay]);
+
+
     const handleUserStart = async () => {
         setHasUserInteracted(true);
         startGlobalTimer();
@@ -307,19 +346,6 @@ export default function VideoPlayer() {
             }
         } catch (e) {
             console.error("VIDEO PLAY FAILED", e);
-        }
-    };
-
-    const togglePlay = () => {
-        const video = videoRef.current;
-        const audio = audioRef.current;
-        if (!video || currentInteraction?.blocking) return;
-        if (video.paused) {
-            video.play();
-            audio?.play();
-        } else {
-            video.pause();
-            audio?.pause();
         }
     };
 
@@ -407,7 +433,7 @@ export default function VideoPlayer() {
                                 if (video) video.muted = !video.muted;
                                 if (audio) audio.muted = !audio.muted;
                             }}
-                            onPlayPause={togglePlay}
+                            onPlayPause={onPausePlay}
                             progress={progress}
                         />
                     </div>

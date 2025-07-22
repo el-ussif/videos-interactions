@@ -2,7 +2,7 @@ import {Button} from "@/components/ui/button";
 import useTokenStore from "@/store/token-store";
 import {useState} from "react";
 
-export default function OceanStopper({ disabled = false, onComplete }: { onComplete?: () => void, disabled?: boolean }) {
+export default function OceanLastScene({ disabled = false, onComplete }: { onComplete?: () => void, disabled?: boolean }) {
     const { addToken } = useTokenStore()
     const [tokenIsAdded, setTokenIsAdded] = useState(false)
     const getInteractivityToken = () => {
@@ -21,7 +21,7 @@ export default function OceanStopper({ disabled = false, onComplete }: { onCompl
                     <div className="relative">
                         <div className="w-32 h-32 mx-auto rounded-full overflow-hidden">
                             <img
-                                src="/images/oceans/carlos-ramirez.png"
+                                src="/images/oceans/carlos-ramirez-1.png"
                                 alt="Carlos Ramirez"
                                 width={166}
                                 height={166}
@@ -57,7 +57,7 @@ export default function OceanStopper({ disabled = false, onComplete }: { onCompl
                         <Button
                             disabled={tokenIsAdded || disabled}
                             onClick={getInteractivityToken}
-                            className={`w-full mt-16 ${
+                            className={`w-full mt-6 ${
                                 disabled ? "bg-white text-black cursor-not-allowed opacity-60" : ""
                             }`}
                         >

@@ -11,7 +11,7 @@ import OceanJapaneseSpiderFunFact from "@/components/interactions/oceans/ocean-j
 import KnowledgeCheckQuizJapaneseSpiderCrab
     from "@/components/interactions/oceans/knowledge-check-quiz-japanese-spider-crab";
 import KnowledgeCheckBarrelEye from "@/components/interactions/oceans/knowledge-check-barrel-eye";
-import OceanStopper from "@/components/interactions/oceans/ocean-stopper";
+import OceanLastScene from "@/components/interactions/oceans/ocean-last-scene";
 import PerformanceSummary from "@/components/custom-ui/performance-summary";
 import KnowledgeCheckFishesMatching from "@/components/interactions/oceans/knowledge-check-fishes-matching";
 
@@ -30,21 +30,7 @@ export const videos = [
         downloadFile: '/downloads/ocean/diving-into-the-depths-worksheet.pdf',
         items: [
             {
-                id: 15,
-                src: "/videos/ocean/Frame08.mp4",
-                volume: 0.90,
-                interactions: [
-                    {
-                        timecode: 1,
-                        duration: 10,
-                        blocking: true,
-                        loop: true,
-                        component: () => <PerformanceSummary/>,
-                    },
-                ],
-            },
-            {
-                id: 0.5,
+                id: 1,
                 src: "/videos/ocean/Frame01.mp4",
                 volume: 0.5,
                 interactions: [
@@ -261,7 +247,7 @@ export const videos = [
                         duration: null,
                         canGoNext: true,
                         blocking: true,
-                        component: (props: InteractionComponentProps) => <OceanStopper {...props} />,
+                        component: (props: InteractionComponentProps) => <OceanLastScene {...props} />,
                     },
                 ],
             },

@@ -2,10 +2,16 @@ import {Button} from "@/components/ui/button";
 import {useInteractionTimerStore} from "@/store/interaction-timer-store";
 import {useEffect} from "react";
 import useTokenStore from "@/store/token-store";
+import {useParams} from "next/navigation";
+import {videos as VideosData} from "@/data/videos";
+import Link from "next/link";
 
 export default function PerformanceSummary() {
     const { stop, elapsedTime: responseTimes } = useInteractionTimerStore();
     const {token} = useTokenStore()
+    const { id } = useParams();
+    const currentIndex = VideosData.findIndex((item) => item.slug === id);
+    const videoData = currentIndex !== -1 ? VideosData[currentIndex] : null;
 
     useEffect(() => {
         stop()
@@ -68,7 +74,7 @@ export default function PerformanceSummary() {
                                     </span>
                                 </div>
                                 <div className="font-bold mt-4 py-8 text-8xl w-full">
-                                85%
+                                    {(100*(token/(videoData?.tokenCanEarn??1))).toFixed(0)}%
                                 </div>
                             </div>
 
@@ -142,26 +148,31 @@ export default function PerformanceSummary() {
                                     {token}
                                 </div>
                                 <div className="font-semibold mt-1 w-full">
-                                    out of 50 tokens
+                                    out of {videoData?.totalToken} tokens
                                 </div>
                             </div>
 
                         </div>
 
-                        <div className="bg-dark-1 mt-8 items-center rounded-3xl w-full flex justify-between">
-                            <div className="px-10 text-left font-semibold text-2xl">
-                                Download a hands-on <br/>
-                                activity for bonus tokens
+                        <Link href={videoData?.downloadFile??""} download={true}>
+                            <div className="bg-dark-1 mt-8 items-center rounded-3xl w-full flex justify-between">
+                                <div className="px-10 text-left font-semibold text-2xl">
+                                    Download a hands-on <br/>
+                                    activity for bonus tokens
+                                </div>
+                                <div className="w-[350px]">
+                                    <img className="rounded-3xl"
+                                         src="/images/oceans/ocean-performance-summary-download.png" alt=""/>
+                                </div>
                             </div>
-                            <div className="w-[350px]">
-                                <img className="rounded-3xl" src="/images/oceans/ocean-performance-summary-download.png" alt=""/>
-                            </div>
-                        </div>
+                        </Link>
 
                         <div className="">
-                            <Button className="w-[444px] py-7 mt-8 rounded-xl">
-                                Exit
-                            </Button>
+                            <Link href="/">
+                                <Button className="w-[444px] py-7 mt-8 rounded-xl">
+                                    Exit
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 </div>
