@@ -1,6 +1,5 @@
 "use client"
-import { useDrop } from "react-dnd";
-import clsx from "clsx";
+import {useDrop} from "react-dnd";
 import {DragItem, ItemTypes} from "@/components/custom-ui/matching-boxes/matching-boxes";
 import DraggableLabel from "@/components/custom-ui/matching-boxes/draggable-label";
 import {useMemo} from "react";
@@ -10,7 +9,7 @@ function LabelsContainer({ labels, onReturn }: {
     onReturn: (item: DragItem) => void
 }) {
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [{ isOver }, drop]:any = useDrop(() => ({
+    const [, drop]:any = useDrop(() => ({
         accept: ItemTypes.LABEL,
         drop: (item: DragItem) => {
             onReturn(item);
@@ -37,9 +36,7 @@ function LabelsContainer({ labels, onReturn }: {
     return (
         <div
             ref={drop}
-            className={clsx(
-                "grid grid-cols-3 mt-5 gap-3 rounded-lg min-h-10",
-            )}
+            className={"grid grid-cols-3 mt-5 gap-3 rounded-lg min-h-10"}
         >
             {shuffledLabels.map((labelItem) => (
                 <div
