@@ -61,7 +61,7 @@ export default function KnowledgeCheckQuizAnglerFish({
                 >
                     <h2 className="text-white font-bold text-6xl">Knowledge Check</h2>
                     <h2 className="text-white font-bold text-2xl mt-5">
-                        What is the "bulb" on top of a Football Fish's head for?
+                        {`What is the "bulb" on top of a Football Fish's head for?`}
                     </h2>
 
                     <div className="flex space-x-[120px] items-center mt-8">
