@@ -30,9 +30,31 @@ export const videos = [
         downloadFile: '/downloads/ocean/diving-into-the-depths-worksheet.pdf',
         items: [
             {
+                id: 13,
+                src: "/videos/ocean/Frame13.mp4",
+                volume: 0.5,
+                interactions: [
+
+                    {
+                        timecode: 1,
+                        duration: null,
+                        blocking: true,
+                        canGoNext: true,
+                        loop: true,
+                        audios: [
+                            "/audios/ocean/frame-13-intro.wav",
+                            "/audios/ocean/frame-13-question.wav",
+                            "/audios/ocean/frame-13-correct-answer.wav",
+                            "/audios/ocean/frame-13-incorrect-answer.wav",
+                        ],
+                        component: (props: InteractionComponentProps) => <KnowledgeCheckBarrelEye {...props} />,
+                    },
+                ],
+            },
+            {
                 id: 1,
                 src: "/videos/ocean/Frame01.mp4",
-                volume: 0.5,
+                volume: 0.1,
                 interactions: [
                     {
                         timecode: 1,
@@ -79,7 +101,7 @@ export const videos = [
                 volume: 0.3,
                 interactions: [
                     {
-                        timecode: 1,
+                        timecode: 0.5,
                         duration: 26,
                         blocking: false,
                         component: () => <OceanBarrelEyeFish />,
@@ -92,7 +114,7 @@ export const videos = [
                 volume: 0.3,
                 interactions: [
                     {
-                        timecode: 1,
+                        timecode: 0.5,
                         duration: 28.5,
                         blocking: false,
                         component: () => <OceanBarrelEyeFishFunFact/>,
@@ -117,7 +139,7 @@ export const videos = [
                 src: "/videos/ocean/Frame07.mp4",
                 interactions: [
                     {
-                        timecode: 1,
+                        timecode: 0.5,
                         duration: 27.5,
                         blocking: false,
                         blockingBg: false,
@@ -131,7 +153,7 @@ export const videos = [
                 volume: 0.5,
                 interactions: [
                     {
-                        timecode: 1,
+                        timecode: 0.5,
                         duration: null,
                         blocking: true,
                         canGoNext: true,
@@ -152,7 +174,7 @@ export const videos = [
                 volume: 0.3,
                 interactions: [
                     {
-                        timecode: 1,
+                        timecode: 0.5,
                         duration: 20.5,
                         blocking: false,
                         component: () => <OceanJapaneseSpiderCrab/>,
@@ -165,7 +187,7 @@ export const videos = [
                 volume: 0.3,
                 interactions: [
                     {
-                        timecode: 1,
+                        timecode: 0.5,
                         duration: 28.5,
                         blocking: false,
                         component: () => <OceanJapaneseSpiderFunFact/>,
@@ -178,7 +200,7 @@ export const videos = [
                 volume: 0.5,
                 interactions: [
                     {
-                        timecode: 1,
+                        timecode: 0.5,
                         duration: null,
                         blocking: true,
                         canGoNext: true,
@@ -199,7 +221,7 @@ export const videos = [
                 volume: 0.5,
                 interactions: [
                     {
-                        timecode: 1,
+                        timecode: 0.5,
                         duration: null,
                         blocking: true,
                         canGoNext: true,
@@ -221,7 +243,7 @@ export const videos = [
                 interactions: [
 
                     {
-                        timecode: 1,
+                        timecode: 0.5,
                         duration: null,
                         blocking: true,
                         canGoNext: true,
@@ -242,7 +264,7 @@ export const videos = [
                 volume: 0.5,
                 interactions: [
                     {
-                        timecode: 1,
+                        timecode: 0.5,
                         previewDuration: 17.20,
                         duration: null,
                         canGoNext: true,
@@ -257,7 +279,7 @@ export const videos = [
                 volume: 0.90,
                 interactions: [
                     {
-                        timecode: 1,
+                        timecode: 0.5,
                         duration: 10,
                         blocking: true,
                         loop: true,

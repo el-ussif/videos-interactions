@@ -28,7 +28,7 @@ export default function OceanExpert1({ onComplete,   disabled = false,
                         <div className="space-y-2">
                             <p className="text-slate-700">
                                 <strong className="font-bold text-2xl">Job:</strong> Head of Oceanography Research at
-                                Columbia University
+                                Columbo University
                             </p>
                         </div>
 

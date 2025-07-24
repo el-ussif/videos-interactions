@@ -50,11 +50,8 @@ export default function KnowledgeCheckBarrelEye({ onComplete }: { onComplete?: (
                     <h2 className="text-white font-bold mt-6 text-6xl">
                         Knowledge Check
                     </h2>
-                    <h2 className="text-white text-2xl mt-5">
-                        In How have Barreleyes been affected by <strong className="font-semibold text-2xl">
-                            climate change
-                        </strong>
-                        ?
+                    <h2 className="text-white font-bold text-2xl mt-5">
+                        In How have Barreleyes been affected by climate change ?
                     </h2>
                 </div>
                 <div className="w-full flex justify-center items-center space-x-6 mt-6">

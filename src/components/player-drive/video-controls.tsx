@@ -43,14 +43,14 @@ export default function VideoControls({
                             onClick={onPlayPause}
                             className={`text-white ${
                                 blocking ? "opacity-50 cursor-not-allowed" : "hover:cursor-pointer"
-                            } bg-[#DBE2EA]/40 h-[60px] w-[60px] rounded-full items-center justify-center flex transition`}
+                            }   bg-primary/90 hover:bg-primary h-[60px] w-[60px] rounded-full items-center justify-center flex transition`}
                         >
                             {isPaused ? <Play size={32} /> : <img alt="" width={20} height={27} src="/images/pause.png" />}
                         </button>
 
                         <button
                             onClick={onMuteToggle}
-                            className="text-white hover:cursor-pointer bg-[#DBE2EA]/40 h-[60px] w-[60px] rounded-full items-center justify-center flex transition"
+                            className="text-white hover:cursor-pointer bg-primary/90 hover:bg-primary h-[60px] w-[60px] rounded-full items-center justify-center flex transition"
                         >
                             {isMuted ? (
                                 <VolumeX />
