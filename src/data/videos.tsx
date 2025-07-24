@@ -30,24 +30,23 @@ export const videos = [
         downloadFile: '/downloads/ocean/diving-into-the-depths-worksheet.pdf',
         items: [
             {
-                id: 13,
-                src: "/videos/ocean/Frame13.mp4",
+                id: 11,
+                src: "/videos/ocean/Frame11.mp4",
                 volume: 0.5,
                 interactions: [
-
                     {
-                        timecode: 1,
+                        timecode: 0.5,
                         duration: null,
                         blocking: true,
                         canGoNext: true,
                         loop: true,
                         audios: [
-                            "/audios/ocean/frame-13-intro.wav",
-                            "/audios/ocean/frame-13-question.wav",
-                            "/audios/ocean/frame-13-correct-answer.wav",
-                            "/audios/ocean/frame-13-incorrect-answer.wav",
+                            "/audios/ocean/frame-11-intro.wav",
+                            "/audios/ocean/frame-11-question.wav",
+                            "/audios/ocean/frame-11-correct-answer.wav",
+                            "/audios/ocean/frame-11-incorrect-answer.wav",
                         ],
-                        component: (props: InteractionComponentProps) => <KnowledgeCheckBarrelEye {...props} />,
+                        component: (props: InteractionComponentProps) => <KnowledgeCheckQuizJapaneseSpiderCrab {...props} />,
                     },
                 ],
             },

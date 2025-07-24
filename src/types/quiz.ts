@@ -7,4 +7,5 @@ export type QuizResult = {
 export type AudioPaths = {
     correct: string
     incorrect: string
+    retry?: string
 }
