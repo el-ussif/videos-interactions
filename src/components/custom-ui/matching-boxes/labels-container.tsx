@@ -39,7 +39,6 @@ function LabelsContainer({ labels, onReturn }: {
             ref={drop}
             className={clsx(
                 "grid grid-cols-3 mt-5 gap-3 rounded-lg min-h-10",
-                isOver && "bg-gray-100"
             )}
         >
             {shuffledLabels.map((labelItem) => (
